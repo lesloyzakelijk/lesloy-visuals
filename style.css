@@ -54,3 +54,27 @@ body.modal-open { overflow:hidden; }
   .lb-close { top:12px; right:12px; }
   .lightbox { padding:14px; }
 }
+
+/* ===== V6 premium work + contact ===== */
+nav a.active { opacity:1; }
+.work-gallery { align-items:start; }
+.work-gallery .work-card { position:relative; overflow:hidden; background:#111; }
+.work-gallery .work-card figcaption { transition:transform .35s ease, opacity .35s ease; }
+.work-gallery .work-card:hover figcaption { transform:translateX(6px); opacity:1; }
+.section-title { font-size:clamp(2.4rem,6vw,5.4rem); line-height:.9; margin:18px 0 0; letter-spacing:-.05em; }
+.mini-cta { border-top:1px solid rgba(255,255,255,.14); }
+.project-form { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:900px; margin-top:42px; }
+.project-form label { display:flex; flex-direction:column; gap:10px; font-size:.68rem; letter-spacing:.14em; opacity:.8; }
+.project-form input,.project-form select,.project-form textarea { width:100%; box-sizing:border-box; border:1px solid rgba(255,255,255,.17); background:rgba(255,255,255,.035); color:#fff; padding:15px 16px; font:inherit; outline:none; border-radius:0; }
+.project-form input:focus,.project-form select:focus,.project-form textarea:focus { border-color:rgba(255,255,255,.65); background:rgba(255,255,255,.06); }
+.project-form select option { background:#111; color:#fff; }
+.project-form textarea { resize:vertical; min-height:140px; }
+.project-form .full { grid-column:1/-1; }
+.form-submit { border:0; margin-top:10px; cursor:pointer; }
+.request-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+.btn-ghost { background:transparent; border:1px solid rgba(255,255,255,.25); }
+.small-note { max-width:760px; font-size:.72rem; opacity:.45; margin-top:30px; line-height:1.6; }
+@media(max-width:700px){ .project-form { grid-template-columns:1fr; } .project-form .full { grid-column:auto; } .section-title { font-size:3rem; } }
+
+/* V7 contact form */
+.contact-form label{display:flex;flex-direction:column;gap:10px;font-size:.72rem;letter-spacing:.12em;opacity:.9}.contact-form input,.contact-form select,.contact-form textarea{width:100%;box-sizing:border-box;background:#111;color:#fff;border:1px solid rgba(255,255,255,.16);padding:16px 15px;font:inherit;letter-spacing:0;border-radius:0;outline:none}.contact-form textarea{resize:vertical}.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#fff}.contact-form select{appearance:auto}.contact-form .btn{border:1px solid #fff;background:#fff;color:#000;cursor:pointer}.contact-form .btn.secondary{background:transparent;color:#fff}.contact-form .btn:hover{opacity:.8}.contact-form .full{grid-column:1/-1}

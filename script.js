@@ -74,3 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+// Project request builder
+const projectForm = document.querySelector('#project-form');
+if (projectForm) {
+  let requestText = '';
+  projectForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(projectForm);
+    requestText = `LESLOY VISUALS — PROJECT REQUEST\n\nNaam: ${data.get('name')}\nE-mail: ${data.get('email')}\nType shoot: ${data.get('type')}\nGewenste datum: ${data.get('date') || 'Nog niet bekend'}\n\nIdee:\n${data.get('idea') || 'Nog niet ingevuld'}`;
+    const status = document.querySelector('#form-status');
+    status.textContent = 'Aanvraag staat klaar. Kopieer hem en stuur hem via Instagram.';
+    document.querySelector('#request-actions').hidden = false;
+  });
+  document.querySelector('#copy-request')?.addEventListener('click', async () => {
+    const status = document.querySelector('#form-status');
+    try { await navigator.clipboard.writeText(requestText); status.textContent = 'Gekopieerd ✓ Open Instagram en plak je aanvraag in je bericht.'; }
+    catch { status.textContent = 'Kopiëren lukte niet automatisch. Selecteer de tekst opnieuw of gebruik Instagram.'; }
+  });
+}
