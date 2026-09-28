@@ -29,6 +29,11 @@
       "source": "/review.html",
       "destination": "/review",
       "permanent": true
+    },
+    {
+      "source": "/pricing.html",
+      "destination": "/pricing",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -51,6 +56,10 @@
     {
       "source": "/review",
       "destination": "/review.html"
+    },
+    {
+      "source": "/pricing",
+      "destination": "/pricing.html"
     }
   ]
 }
