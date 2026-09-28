@@ -125,3 +125,33 @@ footer{background:#050505}
 
 .pricing-hero{padding:150px 0 90px;max-width:900px}.pricing-hero h1{font:500 clamp(70px,10vw,145px)/.82 "Playfair Display",serif;letter-spacing:-.06em;margin:22px 0}.pricing-hero h1 i{font-style:italic;color:#d1d1ca}.pricing-hero p{max-width:650px;color:#888;font-size:15px;line-height:1.8}.pricing-category{padding:65px 0;border-top:1px solid var(--line)}.pricing-category-head{display:flex;align-items:baseline;gap:25px;margin-bottom:35px}.pricing-category-head span{font-size:9px;letter-spacing:.15em;color:#777}.pricing-category-head h2{font-size:14px;letter-spacing:.18em;margin:0}.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.pricing-card{padding:32px 28px 36px 0;min-height:255px;display:flex;flex-direction:column;align-items:flex-start}.pricing-card+.pricing-card{border-left:1px solid var(--line);padding-left:28px}.pricing-card.featured{background:rgba(255,255,255,.025);padding-right:28px}.pricing-card.wide{min-height:220px}.pricing-card>span{font-size:9px;letter-spacing:.16em;color:#888}.pricing-card strong{font:500 clamp(32px,3.2vw,52px)/1 "Playfair Display",serif;margin:25px 0 16px}.pricing-card p{font-size:12px;line-height:1.75;color:#888;margin:0 0 25px}.pricing-card .line-link{margin-top:auto}.pricing-fineprint{padding:0 0 100px}.pricing-fineprint p{font-size:11px;color:#666;line-height:1.7;max-width:700px}
 @media(max-width:800px){.pricing-hero{padding:110px 0 65px}.pricing-cards{grid-template-columns:1fr}.pricing-card+.pricing-card{border-left:0;border-top:1px solid var(--line);padding-left:0}.pricing-card{min-height:0;padding:28px 0 32px}.pricing-card.featured{padding-right:0}.pricing-category{padding:45px 0}}
+
+/* LESLOY V10 — light editorial */
+:root{--v10-bg:#f5f4ef;--v10-ink:#151515;--v10-muted:#77756f;--v10-line:rgba(21,21,21,.14)}
+html{scroll-behavior:smooth}
+body{background:var(--v10-bg);color:var(--v10-ink)}
+header{background:rgba(245,244,239,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--v10-line)}
+a{color:inherit}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.v10-services{padding-top:8vh;padding-bottom:10vh}
+.v10-service-list{border-top:1px solid var(--v10-line);border-bottom:1px solid var(--v10-line)}
+.v10-service{display:grid;grid-template-columns:64px 1fr 28px;align-items:center;padding:24px 4px;border-top:1px solid var(--v10-line);text-decoration:none;transition:background .35s ease,padding .35s ease}
+.v10-service:first-child{border-top:0}
+.v10-service:hover{background:#e9e8e2;padding-left:18px;padding-right:18px}
+.v10-service b{font-size:13px;letter-spacing:.2em;font-weight:600}
+.v10-service>span:last-child{font-size:18px;transition:transform .35s}
+.v10-service:hover>span:last-child{transform:translateX(5px)}
+.v10-emoji{font-size:25px;display:inline-block;transform-origin:center;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.v10-service:hover .v10-emoji{transform:translateX(8px) rotate(-8deg) scale(1.18)}
+.v10-service:nth-child(2):hover .v10-emoji{transform:translateX(8px) rotate(8deg) scale(1.18)}
+.v10-service:nth-child(3):hover .v10-emoji{animation:v10-confetti .55s ease}
+.v10-service:nth-child(4):hover .v10-emoji{animation:v10-ring .75s ease}
+.v10-service:nth-child(5):hover .v10-emoji{transform:translateX(8px) rotate(10deg) scale(1.2)}
+@keyframes v10-confetti{0%,100%{transform:scale(1)}35%{transform:translateY(-5px) rotate(-10deg) scale(1.18)}70%{transform:translateY(1px) rotate(8deg) scale(1.08)}}
+@keyframes v10-ring{0%,100%{transform:scale(1)}30%{transform:scale(1.22) rotate(-7deg)}55%{transform:scale(1.08) rotate(7deg)}80%{transform:scale(1.16)}}
+.btn{transition:transform .3s ease,box-shadow .3s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.12)}
+.launch-offer{background:#171717;color:#f5f4ef}
+@media(max-width:700px){.v10-service{grid-template-columns:48px 1fr 24px;padding:20px 0}.v10-service:hover{padding-left:8px;padding-right:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.v10-service:hover .v10-emoji{animation:none;transform:none}}
