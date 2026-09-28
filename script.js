@@ -12,3 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // V10 editorial reveal
 document.addEventListener("DOMContentLoaded",()=>{const els=document.querySelectorAll(".reveal");if(!("IntersectionObserver" in window)){els.forEach(e=>e.classList.add("visible"));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}}),{threshold:.12});els.forEach((e,i)=>{e.style.transitionDelay=Math.min(i*45,180)+"ms";io.observe(e)})});
+
+// V11 floating header state
+document.addEventListener("DOMContentLoaded",()=>{
+  const header=document.querySelector("header");
+  if(!header) return;
+  const update=()=>header.classList.toggle("scrolled",window.scrollY>60);
+  update();
+  window.addEventListener("scroll",update,{passive:true});
+});
