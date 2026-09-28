@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Deel je ervaring met Lesloy Visuals.">
+<title>Review — Lesloy Visuals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="cursor"></div>
+<header>
+  <a class="logo" href="/"><span>LV</span><b>LESLOY</b><small>VISUALS</small></a>
+  <nav><a href="/work">WORK</a><a href="/about">ABOUT</a><a href="/services">SERVICES</a><a href="/contact">CONTACT</a></nav>
+  <a class="insta" href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">IG ↗</a>
+  <button class="menu" aria-label="Menu" aria-expanded="false">☰</button>
+</header>
+<main>
+<section class="contact-wrap review-page">
+  <div class="eyebrow">LESLOY VISUALS / REVIEW</div>
+  <h1>YOUR<br><i>EXPERIENCE.</i></h1>
+  <p class="contact-intro">Heb je een shoot met Lesloy Visuals gedaan? Ik hoor graag hoe je het hebt ervaren. Je review wordt eerst gecontroleerd voordat deze eventueel op de website verschijnt.</p>
+
+  <form class="contact-form" action="https://formsubmit.co/lesloyzakelijk@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Nieuwe review — Lesloy Visuals">
+    <input type="hidden" name="_next" value="https://lesloyvisuals.nl/review?sent=1">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+
+    <div class="contact-grid">
+      <label>NAAM<input name="naam" type="text" placeholder="Jouw naam" required></label>
+      <label>E-MAIL<input name="email" type="email" placeholder="jouw@email.nl" required></label>
+      <label>TYPE SHOOT
+        <select name="type_shoot" required>
+          <option value="" disabled selected>Kies een type</option>
+          <option>Portret</option><option>Automotive</option><option>Bruiloft</option>
+          <option>Event</option><option>Private shoot</option><option>Creatief / anders</option>
+        </select>
+      </label>
+      <label>BEOORDELING
+        <select name="beoordeling" required>
+          <option value="" disabled selected>Kies sterren</option>
+          <option>★★★★★ — 5 sterren</option>
+          <option>★★★★☆ — 4 sterren</option>
+          <option>★★★☆☆ — 3 sterren</option>
+          <option>★★☆☆☆ — 2 sterren</option>
+          <option>★☆☆☆☆ — 1 ster</option>
+        </select>
+      </label>
+      <label class="full">JOUW REVIEW
+        <textarea name="review" rows="8" placeholder="Vertel kort over je ervaring..." required></textarea>
+      </label>
+      <label class="full checkbox-label">
+        <input type="checkbox" name="toestemming_publicatie" value="Ja" required>
+        <span>Ik geef toestemming om mijn naam en review na goedkeuring op de website te plaatsen.</span>
+      </label>
+    </div>
+    <p class="contact-note">Je review komt binnen op <strong>lesloyzakelijk@gmail.com</strong>. Je review wordt niet automatisch gepubliceerd.</p>
+    <button class="btn" type="submit">SUBMIT REVIEW ↗</button>
+  </form>
+
+  <div class="review-back"><a class="line-link" href="/">BACK TO LESLOY VISUALS ↗</a></div>
+</section>
+</main>
+<footer><span>© 2026 LESLOY VISUALS</span><span>LESLEY SAMUELS</span><a href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">@lesley.0492 ↗</a></footer>
+<script src="script.js"></script>
+</body>
+</html>

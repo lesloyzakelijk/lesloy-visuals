@@ -24,6 +24,11 @@
       "source": "/contact.html",
       "destination": "/contact",
       "permanent": true
+    },
+    {
+      "source": "/review.html",
+      "destination": "/review",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -42,6 +47,10 @@
     {
       "source": "/contact",
       "destination": "/contact.html"
+    },
+    {
+      "source": "/review",
+      "destination": "/review.html"
     }
   ]
 }
