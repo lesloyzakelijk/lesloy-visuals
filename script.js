@@ -21,3 +21,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   update();
   window.addEventListener("scroll",update,{passive:true});
 });
+// V16: no decorative cursor/circle effect.
+document.addEventListener("DOMContentLoaded",()=> {
+  document.querySelectorAll(".circle,.dot,.orb").forEach(el=>el.remove());
+});

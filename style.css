@@ -602,3 +602,44 @@ main{padding-top:0!important}
   header .menu{width:42px!important;height:42px!important;min-width:42px!important}
   header.nav-open nav a{min-height:52px!important;font-size:11px!important}
 }
+
+/* V16 — hero runs edge-to-edge behind the floating header */
+html,body{background:#f5f4ef!important}
+header{
+  background:rgba(250,249,245,.90)!important;
+  border:1px solid rgba(20,20,20,.12)!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.10)!important;
+}
+.hero{
+  margin-top:0!important;
+  padding-top:0!important;
+  position:relative!important;
+  min-height:100svh!important;
+  overflow:hidden!important;
+}
+.hero::before{display:none!important}
+.hero img,
+.hero picture,
+.hero-media{
+  width:100%!important;
+  height:100%!important;
+  min-height:100svh!important;
+  object-fit:cover!important;
+}
+.hero-content{
+  position:relative!important;
+  z-index:2!important;
+}
+.hero-title{margin-top:0!important}
+@media(min-width:701px){
+  .hero{padding-top:0!important}
+  header{top:18px!important}
+}
+@media(max-width:700px){
+  .hero{padding-top:0!important;min-height:92svh!important}
+  .hero img,.hero picture,.hero-media{min-height:92svh!important}
+  header{top:12px!important}
+}
+/* Remove the decorative stray circle/dot if present in the header/hero */
+header .circle,header .dot,.hero .circle,.hero .dot,
+header [class*="cursor"],header [class*="orb"]{display:none!important}
