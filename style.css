@@ -496,3 +496,109 @@ main{padding-top:0!important}
   }
   .v14-trigger::before{content:"☰";font-size:21px!important;color:#fff!important}
 }
+
+/* V15 — clean mobile navigation, one menu only */
+@media (max-width:700px){
+  header{
+    top:12px!important;
+    left:50%!important;
+    transform:translateX(-50%)!important;
+    width:calc(100% - 20px)!important;
+    height:60px!important;
+    min-height:60px!important;
+    padding:0 12px!important;
+    border-radius:16px!important;
+    background:rgba(250,249,245,.96)!important;
+    border:1px solid rgba(20,20,20,.14)!important;
+    box-shadow:0 10px 30px rgba(0,0,0,.12)!important;
+    z-index:1000!important;
+  }
+
+  header .logo span{
+    border-color:#777!important;
+    color:#151515!important;
+  }
+  header .logo b{color:#151515!important}
+  header .logo small{color:#8a8a85!important}
+  header .insta{display:none!important}
+
+  /* One obvious menu button. */
+  header .menu{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:44px!important;
+    height:44px!important;
+    min-width:44px!important;
+    margin-left:auto!important;
+    border:1px solid #151515!important;
+    border-radius:11px!important;
+    background:#151515!important;
+    color:#fff!important;
+    cursor:pointer!important;
+    position:relative!important;
+    z-index:1002!important;
+  }
+  header .menu::before,
+  header .menu::after{
+    left:11px!important;
+    width:20px!important;
+    height:2px!important;
+    background:#fff!important;
+  }
+  header .menu::before{top:16px!important}
+  header .menu::after{top:25px!important}
+  header .menu.open{
+    background:#f7f6f2!important;
+    border-color:#151515!important;
+  }
+  header .menu.open::before,
+  header .menu.open::after{background:#151515!important;top:21px!important}
+
+  /* Single dropdown, directly attached to the floating header. */
+  header nav{
+    display:none!important;
+  }
+  header.nav-open nav{
+    display:flex!important;
+    position:absolute!important;
+    top:68px!important;
+    left:0!important;
+    right:0!important;
+    padding:8px!important;
+    margin:0!important;
+    flex-direction:column!important;
+    gap:0!important;
+    background:#f7f6f2!important;
+    color:#111!important;
+    border:1px solid rgba(20,20,20,.14)!important;
+    border-radius:16px!important;
+    box-shadow:0 18px 50px rgba(0,0,0,.18)!important;
+    overflow:hidden!important;
+  }
+  header.nav-open nav a{
+    display:flex!important;
+    align-items:center!important;
+    min-height:55px!important;
+    padding:0 17px!important;
+    color:#111!important;
+    opacity:1!important;
+    font-size:12px!important;
+    font-weight:600!important;
+    letter-spacing:.16em!important;
+    border-bottom:1px solid rgba(20,20,20,.10)!important;
+  }
+  header.nav-open nav a:last-child{border-bottom:0!important}
+  header.nav-open nav a::after{display:none!important}
+  header.nav-open nav a:hover{background:#ecebe6!important;opacity:1!important}
+
+  /* Never darken the whole page: keep the photo visible behind the compact menu. */
+  header.nav-open{background:#faf9f5!important}
+  body.v14-menu-open{overflow:auto!important}
+}
+
+@media(max-width:380px){
+  header{width:calc(100% - 14px)!important;padding:0 9px!important}
+  header .menu{width:42px!important;height:42px!important;min-width:42px!important}
+  header.nav-open nav a{min-height:52px!important;font-size:11px!important}
+}
