@@ -1,0 +1,19 @@
+:root{--gate-bg:#090909;--gate-text:#f5f5f5;--gate-muted:#8e8e8e;--gate-line:#2b2b2b}
+body.gate-locked{overflow:hidden}
+body.gate-locked>*:not(#lesloy-gate){visibility:hidden}
+#lesloy-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:28px;background:radial-gradient(circle at 50% 40%,#1b1b1b 0,#0b0b0b 42%,#050505 100%);color:var(--gate-text);font-family:Inter,Arial,sans-serif;text-align:center}
+#lesloy-gate.gate-hidden{display:none}
+.gate-wrap{width:min(760px,100%)}
+.gate-mark{display:inline-flex;align-items:center;gap:18px;margin-bottom:58px}
+.gate-lv{width:58px;height:58px;border:1px solid #777;display:grid;place-items:center;font-family:Georgia,serif;font-size:18px;letter-spacing:-2px}
+.gate-divider{height:48px;width:1px;background:#555}
+.gate-word{text-align:left}.gate-word strong{display:block;font-size:18px;letter-spacing:.24em;font-weight:700}.gate-word span{display:block;margin-top:7px;font-size:8px;letter-spacing:.5em;color:#888}
+.gate-kicker{font-size:10px;letter-spacing:.42em;color:#888;margin-bottom:20px}
+.gate-title{margin:0;font-size:clamp(44px,9vw,94px);line-height:.88;letter-spacing:-.055em;font-weight:900}
+.gate-title em{font-style:normal;font-weight:400}
+.gate-date{margin:28px 0 30px;color:#aaa;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.gate-countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 auto 36px;max-width:620px}
+.gate-time{border:1px solid var(--gate-line);padding:20px 10px;background:#0e0e0e}.gate-time b{display:block;font-size:clamp(28px,5vw,52px);line-height:1;font-variant-numeric:tabular-nums}.gate-time span{display:block;margin-top:9px;color:#777;font-size:8px;letter-spacing:.3em}
+.gate-preview{display:flex;justify-content:center;gap:8px;margin:0 auto;max-width:420px}.gate-preview input{min-width:0;flex:1;background:#0e0e0e;border:1px solid #303030;color:#fff;padding:14px 15px;font:600 12px Inter,Arial,sans-serif;letter-spacing:.12em;outline:none}.gate-preview input:focus{border-color:#777}.gate-preview button{border:0;background:#f3f3f3;color:#080808;padding:0 18px;font:800 11px Inter,Arial,sans-serif;letter-spacing:.12em;cursor:pointer}.gate-error{min-height:18px;margin-top:10px;color:#aaa;font-size:10px;letter-spacing:.08em}.gate-note{margin-top:34px;color:#666;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+@media(max-width:560px){.gate-mark{margin-bottom:42px}.gate-countdown{gap:6px}.gate-time{padding:16px 5px}.gate-preview{flex-direction:column}.gate-preview button{height:46px}.gate-title{font-size:56px}.gate-word strong{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

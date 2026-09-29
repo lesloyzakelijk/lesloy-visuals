@@ -1,21 +1,6 @@
-LESLOY VISUALS — website
-=========================
+LESLOY SITE V6
 
-Bestanden:
-- index.html
-- style.css
-- script.js
-- images/
+Countdown gate: public launch 5 October 2026 at 00:00 (Europe/Amsterdam).
+Preview code: LESLOY2026
 
-De website is volledig statisch en kan gratis op Vercel worden geplaatst.
-
-Vercel:
-1. Ga naar https://vercel.com/
-2. Klik op "Add New..." -> "Project".
-3. Kies "Import Third-Party Git Repository" als je GitHub gebruikt, of upload deze map via een ondersteunde workflow.
-4. Laat de standaard instellingen staan en klik Deploy.
-
-Alternatief: zet de bestanden in een GitHub repository en importeer die repository in Vercel.
-
-Instagram: @Lesloy.0492
-Naam: Lesley Samuels
+The preview gate is client-side for this static build. For real server-side protection, add Vercel middleware/password protection.
