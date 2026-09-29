@@ -367,3 +367,132 @@ main{padding-top:0!important}
   .section::before{left:17px}
   .hero-bottom{left:17px;right:17px}
 }
+
+/* V14 — mobile menu: maximum contrast + obvious controls */
+@media (max-width:700px){
+  header{
+    background:rgba(250,249,245,.96)!important;
+    border:1px solid rgba(20,20,20,.16)!important;
+    box-shadow:0 8px 26px rgba(0,0,0,.12)!important;
+  }
+
+  /* The menu trigger must look like a button, not a vague icon. */
+  .menu-toggle,
+  .nav-toggle,
+  .hamburger,
+  button[aria-label*="menu" i],
+  button[aria-label*="navig" i]{
+    width:46px!important;
+    height:46px!important;
+    min-width:46px!important;
+    border:1px solid rgba(20,20,20,.22)!important;
+    border-radius:12px!important;
+    background:#151515!important;
+    color:#fff!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:0!important;
+    box-shadow:0 4px 12px rgba(0,0,0,.14)!important;
+    position:relative!important;
+    z-index:1202!important;
+  }
+  .menu-toggle::before,.nav-toggle::before,.hamburger::before{
+    content:"☰";
+    font-size:20px!important;
+    line-height:1!important;
+    color:#fff!important;
+  }
+
+  /* Open menu: bright panel, dark type, generous spacing. */
+  .mobile-menu,
+  .nav-menu,
+  .menu-overlay,
+  header nav.mobile-open,
+  header nav.open{
+    background:#f7f6f2!important;
+    color:#111!important;
+  }
+
+  /* Catch the common V13 overlay/menu selectors. */
+  .mobile-menu{
+    position:fixed!important;
+    inset:82px 10px 10px!important;
+    z-index:1200!important;
+    border:1px solid rgba(20,20,20,.14)!important;
+    border-radius:18px!important;
+    box-shadow:0 22px 60px rgba(0,0,0,.20)!important;
+    padding:34px 26px!important;
+    overflow:auto!important;
+  }
+  .mobile-menu a{
+    color:#111!important;
+    opacity:1!important;
+    font-size:clamp(22px,7vw,32px)!important;
+    line-height:1.15!important;
+    letter-spacing:.04em!important;
+    font-weight:500!important;
+    text-shadow:none!important;
+    display:flex!important;
+    align-items:center!important;
+    min-height:58px!important;
+    border-bottom:1px solid rgba(20,20,20,.10)!important;
+  }
+  .mobile-menu a:last-child{border-bottom:0!important}
+
+  /* If V13 uses a full-screen overlay, make it readable instead of black-on-black. */
+  .nav-overlay,
+  .menu-backdrop{
+    background:rgba(0,0,0,.38)!important;
+  }
+
+  /* Desktop nav should never leak through the mobile overlay. */
+  header nav:not(.mobile-menu){
+    color:#111!important;
+  }
+}
+
+/* Extra-small screens */
+@media(max-width:420px){
+  .mobile-menu{
+    inset:76px 8px 8px!important;
+    padding:26px 22px!important;
+  }
+  .mobile-menu a{font-size:24px!important;min-height:54px!important}
+}
+
+/* V14 guaranteed mobile menu */
+#v14-mobile-menu{display:none}
+@media(max-width:700px){
+  #v14-mobile-menu{
+    position:fixed;display:block;inset:10px;z-index:2000;
+    background:#f7f6f2;color:#111;border:1px solid rgba(0,0,0,.14);
+    border-radius:20px;box-shadow:0 25px 80px rgba(0,0,0,.28);
+    padding:18px 20px 22px;transform:translateY(-18px);opacity:0;
+    pointer-events:none;transition:opacity .25s ease,transform .25s ease;
+    overflow:auto;
+  }
+  #v14-mobile-menu.is-open{opacity:1;transform:none;pointer-events:auto}
+  .v14-menu-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(0,0,0,.12)}
+  .v14-menu-brand{display:grid;grid-template-columns:42px auto;column-gap:12px;align-items:center}
+  .v14-menu-brand span{grid-row:span 2;width:42px;height:42px;border:1px solid #777;display:flex;align-items:center;justify-content:center;font-family:serif;font-size:19px}
+  .v14-menu-brand strong{font-size:18px;letter-spacing:.16em;line-height:1}
+  .v14-menu-brand small{font-size:8px;letter-spacing:.32em;color:#888;margin-top:-2px}
+  .v14-close{width:46px;height:46px;border:1px solid #111;border-radius:12px;background:#111;color:#fff;font-size:32px;line-height:1;font-weight:200;display:flex;align-items:center;justify-content:center}
+  .v14-menu-links{display:flex;flex-direction:column;padding:18px 0}
+  .v14-menu-links a{color:#111!important;text-decoration:none!important;font-size:clamp(25px,8vw,36px);font-weight:500;letter-spacing:.02em;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.10);min-height:58px;display:flex;align-items:center}
+  .v14-menu-links a:last-child{border-bottom:0}
+  .v14-menu-instagram{display:block;margin-top:4px;padding-top:18px;border-top:1px solid rgba(0,0,0,.12);font-size:11px;letter-spacing:.16em;text-decoration:none;color:#111!important}
+  body.v14-menu-open{overflow:hidden}
+}
+
+@media(max-width:700px){
+  .v14-trigger{
+    width:46px!important;height:46px!important;min-width:46px!important;
+    margin-left:auto!important;border:1px solid #111!important;border-radius:12px!important;
+    background:#111!important;color:#fff!important;font-size:0!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    box-shadow:0 4px 12px rgba(0,0,0,.14)!important;
+  }
+  .v14-trigger::before{content:"☰";font-size:21px!important;color:#fff!important}
+}

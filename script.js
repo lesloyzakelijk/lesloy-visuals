@@ -21,3 +21,23 @@ document.addEventListener("DOMContentLoaded",()=>{
   update();
   window.addEventListener("scroll",update,{passive:true});
 });
+
+// V14 — unambiguous mobile menu
+document.addEventListener("DOMContentLoaded",()=>{
+  const menu=document.getElementById("v14-mobile-menu");
+  if(!menu) return;
+  const close=menu.querySelector(".v14-close");
+  const legacy=document.querySelector(".menu-toggle,.nav-toggle,.hamburger,button[aria-label*='menu' i],button[aria-label*='navig' i]");
+  let trigger=legacy;
+  if(!trigger){
+    trigger=document.createElement("button");
+    trigger.type="button"; trigger.className="v14-trigger"; trigger.setAttribute("aria-label","Menu openen");
+    trigger.textContent="☰";
+    const header=document.querySelector("header");
+    if(header) header.appendChild(trigger);
+  }
+  trigger.classList.add("v14-trigger");
+  trigger.addEventListener("click",(e)=>{e.preventDefault();menu.classList.add("is-open");menu.setAttribute("aria-hidden","false");document.body.classList.add("v14-menu-open");});
+  close.addEventListener("click",()=>{menu.classList.remove("is-open");menu.setAttribute("aria-hidden","true");document.body.classList.remove("v14-menu-open");});
+  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{menu.classList.remove("is-open");document.body.classList.remove("v14-menu-open");}));
+});
