@@ -218,3 +218,152 @@ main{padding-top:0!important}
 @media(prefers-reduced-motion:reduce){
   header{transition:none!important}
 }
+
+/* V12 — mobile readability */
+@media (max-width:700px){
+  body{font-size:16px;line-height:1.55;overflow-x:hidden}
+  header{width:calc(100% - 20px)!important;top:10px!important;height:58px!important;min-height:58px!important;padding:0 13px!important;border-radius:15px!important}
+  header .logo{flex:0 0 auto;min-width:0}
+  header .logo small{display:none!important}
+  header nav{gap:13px!important;margin-left:auto!important;margin-right:8px!important}
+  header nav a{font-size:10px!important;letter-spacing:.11em!important;white-space:nowrap!important}
+  header .insta,header .instagram{font-size:10px!important;letter-spacing:.06em!important;white-space:nowrap!important}
+  .hero{padding-top:88px!important}
+  .hero-title{font-size:clamp(42px,12vw,64px)!important;line-height:.96!important;letter-spacing:-.035em!important}
+  .section-title,.launch-offer h2,.pricing-hero h1{line-height:.98!important;letter-spacing:-.03em!important}
+  .section-title{font-size:clamp(34px,10vw,52px)!important}
+  .eyebrow{font-size:10px!important;line-height:1.4!important;letter-spacing:.16em!important}
+  .section-head{gap:18px!important}
+  .section-head p,.hero p,.launch-offer p{font-size:15px!important;line-height:1.65!important}
+  .btn{min-height:48px!important;padding:0 17px!important;font-size:11px!important;letter-spacing:.1em!important}
+  .v10-service{min-height:64px!important;grid-template-columns:42px minmax(0,1fr) 20px!important;column-gap:8px!important;padding:17px 0!important}
+  .v10-service b{font-size:12px!important;letter-spacing:.13em!important;line-height:1.25!important}
+  .v10-emoji{font-size:22px!important}
+  .v10-service>span:last-child{font-size:16px!important}
+  .launch-details{gap:10px!important;flex-wrap:wrap!important}
+  .launch-details span{font-size:10px!important;letter-spacing:.1em!important;line-height:1.35!important}
+  footer a,nav a,.insta,.instagram{min-height:32px;display:inline-flex!important;align-items:center}
+}
+@media (max-width:420px){
+  header{width:calc(100% - 16px)!important;padding:0 10px!important}
+  header nav{gap:9px!important;margin-right:5px!important}
+  header nav a{font-size:9px!important;letter-spacing:.08em!important}
+  header .insta,header .instagram{font-size:9px!important}
+  .hero-title{font-size:clamp(38px,12vw,54px)!important}
+  .section-title{font-size:clamp(32px,10vw,46px)!important}
+}
+
+/* V13 — mobile-first cleanup */
+@media (max-width:700px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{font-size:15px}
+  header{width:calc(100% - 24px)!important;left:50%!important;top:10px!important;height:58px!important;min-height:58px!important;padding:0 12px!important;border-radius:16px!important;background:rgba(250,249,245,.94)!important;border:1px solid rgba(20,20,20,.10)!important;box-shadow:0 10px 30px rgba(20,20,20,.10)!important}
+  header.scrolled{top:8px!important;width:calc(100% - 20px)!important;height:56px!important;min-height:56px!important}
+  header .logo{grid-template-columns:30px auto;column-gap:8px;font-size:11px;letter-spacing:.12em;color:#151515}
+  header .logo span{width:30px;height:30px;border-color:#777;color:#151515;font-size:11px}
+  header .logo small{display:block!important;font-size:6px;letter-spacing:.3em;color:#777}
+  header nav{display:none!important}
+  header .insta{display:none!important}
+  header .menu{display:block!important;width:40px;height:40px;color:#151515;background:transparent;border:0;padding:0;position:relative;z-index:1001;font-size:0}
+  header .menu::before,header .menu::after{background:#151515!important}
+  header.nav-open{background:rgba(250,249,245,.98)!important}
+  header.nav-open nav{display:flex!important;position:absolute;left:0;right:0;top:68px;padding:10px 8px 12px;background:rgba(250,249,245,.98);border:1px solid rgba(20,20,20,.10);border-radius:16px;box-shadow:0 18px 45px rgba(20,20,20,.12);gap:0;flex-direction:column}
+  header.nav-open nav a{display:flex;align-items:center;min-height:48px;padding:0 16px;font-size:11px;letter-spacing:.16em;color:#151515;border-bottom:1px solid rgba(20,20,20,.08)}
+  header.nav-open nav a:last-child{border-bottom:0}
+  header.nav-open nav a::after{display:none}
+  header.nav-open nav a.active{font-weight:700}
+  .hero{min-height:680px;height:calc(100svh - 0px);max-height:820px}
+  .hero>img{object-position:58% center}
+  .hero-grad{background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.18) 82%),linear-gradient(0deg,rgba(0,0,0,.82),transparent 58%)}
+  .hero-copy{left:20px;right:20px;bottom:92px}
+  .tiny,.eyebrow{font-size:9px;line-height:1.45;letter-spacing:.2em}
+  .hero h1{font-size:clamp(52px,15vw,72px)!important;line-height:.86;letter-spacing:-.055em;margin:16px 0 22px}
+  .hero-copy p{font-size:14px;line-height:1.55;color:#f0f0eb;max-width:330px}
+  .hero-copy .btn{width:100%;max-width:290px;min-height:50px;display:inline-flex;align-items:center;justify-content:center;margin-top:4px;font-size:10px}
+  .hero-bottom{left:20px;right:20px;bottom:22px;font-size:8px;letter-spacing:.16em}
+  .marquee{padding:14px 0}
+  .marquee-item{font-size:12px}
+  .section{padding:72px 20px}
+  .section::before{left:20px;width:48px}
+  .section-head{margin-bottom:34px}
+  .section-head p{font-size:14px;line-height:1.7;color:#a5a5a0;max-width:none}
+  .section-title{font-size:clamp(42px,12vw,58px)!important;line-height:.9!important;margin-top:14px}
+  .work-intro{gap:16px;margin-bottom:28px}
+  .work-intro h2{font-size:clamp(40px,11vw,54px);line-height:.9}
+  .work-intro p{font-size:14px;line-height:1.7;color:#a5a5a0}
+  .gallery{gap:10px}
+  .gallery figure,.gallery figure.wide,.gallery figure.tall{height:300px!important;min-height:0}
+  .gallery figcaption{left:14px;bottom:14px;font-size:8px;letter-spacing:.15em}
+  .gallery figure::after{right:14px;bottom:14px;font-size:7px}
+  .split{gap:30px}
+  .split-img{height:390px!important}
+  .split-copy h2{font-size:clamp(44px,12vw,60px);margin:14px 0 22px}
+  .split-copy p{font-size:14px;line-height:1.75;color:#a5a5a0}
+  .line-link{font-size:10px;letter-spacing:.1em}
+  .services-grid{grid-template-columns:1fr}
+  .service,.service:nth-child(even){padding:24px 0!important}
+  .service h2{font-size:32px;margin:13px 0 8px}
+  .service p{font-size:14px;line-height:1.7;color:#a5a5a0}
+  .why-card{padding:24px 0!important}
+  .why-card h3{font-size:13px;margin:30px 0 10px}
+  .why-card p{font-size:14px;line-height:1.7;color:#a5a5a0}
+  .review-section{padding-bottom:72px}
+  .review-card{padding:26px 20px}
+  .review-card blockquote{font-size:24px;line-height:1.25}
+  .review-card .stars{font-size:15px;margin-bottom:18px}
+  .review-meta{font-size:10px;line-height:1.5}
+  .v10-services{padding-top:72px;padding-bottom:72px}
+  .v10-service-list{margin-top:8px}
+  .v10-service{min-height:60px!important;padding:15px 0!important;grid-template-columns:38px minmax(0,1fr) 18px!important}
+  .v10-service b{font-size:11px!important;letter-spacing:.14em!important}
+  .v10-emoji{font-size:21px!important}
+  .launch-offer{margin:35px 0 72px;padding:28px 20px!important;grid-template-columns:1fr!important;gap:25px}
+  .launch-offer h2{font-size:clamp(48px,13vw,64px)!important;margin:13px 0 16px}
+  .launch-copy p{font-size:14px;line-height:1.7}
+  .launch-deal{padding:24px 0 0!important}
+  .launch-price strong{font-size:68px}
+  .launch-details{gap:7px!important}
+  .launch-details span{font-size:9px!important}
+  .launch-btn{width:100%;justify-content:center;min-height:50px}
+  .contact-wrap{min-height:auto;padding:128px 20px 70px}
+  .contact-wrap h1{font-size:clamp(52px,14vw,72px)!important;line-height:.86;margin:18px 0 24px}
+  .contact-intro{font-size:14px!important;line-height:1.7!important;color:#a5a5a0}
+  .contact-grid{margin-top:38px;gap:18px}
+  .contact-form label{font-size:10px;letter-spacing:.12em}
+  .contact-form input,.contact-form select,.contact-form textarea{font-size:16px;padding:15px 14px;min-height:50px}
+  .contact-form textarea{min-height:150px}
+  .contact-form .btn{width:100%;min-height:52px;font-size:10px}
+  .contact-note{font-size:10px;line-height:1.6}
+  .contact-direct{font-size:9px;line-height:1.5;margin-top:34px;padding-top:20px}
+  footer{padding:28px 20px;gap:10px;font-size:8px;line-height:1.5}
+  .page-hero{padding:118px 20px 58px;min-height:0;display:block}
+  .page-hero .display{font-size:clamp(58px,16vw,82px)!important;line-height:.82;margin-top:16px}
+  .page-hero p{font-size:14px;line-height:1.7;color:#a5a5a0;margin:28px 0 0;max-width:100%}
+  .work-grid{gap:10px}
+  .work-grid .work-card:nth-child(1),.work-grid .work-card:nth-child(2),.work-grid .work-card:nth-child(3),.work-grid .work-card:nth-child(4){height:300px!important}
+  .work-meta{font-size:8px;line-height:1.5;flex-wrap:wrap}
+  .pricing-hero{padding:118px 20px 55px}
+  .pricing-hero h1{font-size:clamp(60px,17vw,88px)!important}
+  .pricing-hero p{font-size:14px;line-height:1.7;color:#a5a5a0}
+  .pricing-category{padding:42px 0}
+  .pricing-category-head{gap:15px;margin-bottom:22px}
+  .pricing-category-head h2{font-size:12px;letter-spacing:.16em}
+  .pricing-card{padding:24px 0!important;min-height:0!important}
+  .pricing-card strong{font-size:38px;margin:17px 0 12px}
+  .pricing-card p{font-size:13px;line-height:1.7;color:#a5a5a0;margin-bottom:20px}
+  .pricing-card .line-link{font-size:10px}
+  .pricing-fineprint{padding:0 20px 70px}
+  .pricing-fineprint p{font-size:10px;line-height:1.7;color:#888}
+  .lightbox{padding:16px}
+  .lightbox img{max-width:100%;max-height:72vh}
+  .lb-close,.lb-prev,.lb-next{width:42px;height:42px;font-size:18px}
+  .lb-close{top:14px;right:14px}.lb-prev{left:12px}.lb-next{right:12px}
+  .lb-meta{left:16px;bottom:16px;font-size:8px}
+}
+@media(max-width:380px){
+  header{width:calc(100% - 18px)!important}
+  .hero-copy{left:17px;right:17px}.hero h1{font-size:50px!important}
+  .section,.contact-wrap,.page-hero{padding-left:17px;padding-right:17px}
+  .section::before{left:17px}
+  .hero-bottom{left:17px;right:17px}
+}
