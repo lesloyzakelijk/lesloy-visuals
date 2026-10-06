@@ -50,6 +50,10 @@
       "destination": "/services.html"
     },
     {
+      "source": "/duo",
+      "destination": "/duo.html"
+    },
+    {
       "source": "/contact",
       "destination": "/contact.html"
     },
