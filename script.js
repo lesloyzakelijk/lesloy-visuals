@@ -25,3 +25,33 @@ document.addEventListener("DOMContentLoaded",()=>{
 document.addEventListener("DOMContentLoaded",()=> {
   document.querySelectorAll(".circle,.dot,.orb").forEach(el=>el.remove());
 });
+
+// V19 — Lesloy Assistant
+(function(){
+  if(document.body && document.body.dataset.assistant === 'off') return;
+  document.addEventListener('DOMContentLoaded',()=>{
+    if(document.querySelector('.lv-assistant')) return;
+    const root=document.createElement('div');
+    root.className='lv-assistant';
+    root.innerHTML=`<button class="lv-assistant-toggle" aria-label="Open Lesloy assistent" aria-expanded="false"><span>LV</span></button>
+      <div class="lv-assistant-panel" role="dialog" aria-label="Lesloy assistent">
+        <div class="lv-assistant-head"><div><strong>Lesloy Assistant</strong><br><small>Hulp nodig? Vraag het gerust.</small></div><button class="lv-assistant-close" aria-label="Sluiten">×</button></div>
+        <div class="lv-assistant-messages"><div class="lv-msg bot">Hey! 👋 Waar kan ik je mee helpen?</div></div>
+        <div class="lv-assistant-chips"><button class="lv-chip">Wat kost een shoot?</button><button class="lv-chip">Duo met Smit Works?</button><button class="lv-chip">Ik wil boeken</button></div>
+        <form class="lv-assistant-form"><input maxlength="1200" placeholder="Typ je vraag…" aria-label="Je vraag"><button type="submit">STUUR</button></form>
+      </div>`;
+    document.body.appendChild(root);
+    const toggle=root.querySelector('.lv-assistant-toggle'), close=root.querySelector('.lv-assistant-close'), form=root.querySelector('form'), input=root.querySelector('input'), messages=root.querySelector('.lv-assistant-messages');
+    const open=()=>{root.classList.add('open');toggle.setAttribute('aria-expanded','true');setTimeout(()=>input.focus(),80)};
+    const shut=()=>{root.classList.remove('open');toggle.setAttribute('aria-expanded','false')};
+    toggle.addEventListener('click',()=>root.classList.contains('open')?shut():open()); close.addEventListener('click',shut);
+    root.querySelectorAll('.lv-chip').forEach(c=>c.addEventListener('click',()=>{input.value=c.textContent;form.requestSubmit()}));
+    const add=(text,kind)=>{const d=document.createElement('div');d.className='lv-msg '+kind;d.textContent=text;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;return d};
+    form.addEventListener('submit',async e=>{
+      e.preventDefault(); const q=input.value.trim(); if(!q)return; add(q,'user'); input.value='';
+      const wait=add('Even kijken…','bot');
+      try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});const data=await r.json();wait.remove();add(data.answer||data.error||'Ik kan je nu even niet helpen. Mail ons gerust.','bot');}
+      catch(err){wait.remove();add('Er ging iets mis. Mail ons gerust via lesloyzakelijk@gmail.com.','bot');}
+    });
+  });
+})();
