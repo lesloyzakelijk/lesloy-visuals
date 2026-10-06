@@ -664,16 +664,18 @@ header [class*="cursor"],header [class*="orb"]{display:none!important}
 @media(max-width:700px){.duo-feature{border-radius:0;margin-left:-20px;margin-right:-20px}.duo-feature-photo{min-height:330px}.duo-feature-copy{padding:36px 22px}.duo-feature-copy h3{font-size:40px}.duo-feature-copy p{font-size:14px}.duo-intro{gap:28px}.duo-hero-photo{aspect-ratio:4/3}.duo-people-grid{grid-template-columns:1fr;gap:14px}.duo-person-img,.duo-person-lesley .duo-person-img{aspect-ratio:4/3}.duo-photo-break{min-height:500px;margin-left:-20px;margin-right:-20px;padding:28px 20px}.duo-photo-break strong{font-size:60px}.duo-photo-break .btn{font-size:11px}.duo-mark{font-size:9px}}
 
 /* V19 — Lesloy Assistant */
+/* Lesloy Assistant — clean editorial widget */
 .lv-assistant{position:fixed;right:22px;bottom:22px;z-index:9999;font-family:'DM Sans',Arial,sans-serif}
-.lv-assistant-toggle{width:54px;height:54px;border-radius:50%;border:1px solid rgba(17,17,17,.18);background:#111;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,.18);font-size:15px;font-weight:700;letter-spacing:-.06em}
-.lv-assistant-toggle span{font-size:11px;letter-spacing:.05em}
-.lv-assistant-panel{position:absolute;right:0;bottom:68px;width:min(360px,calc(100vw - 30px));background:#f8f7f2;color:#111;border:1px solid rgba(17,17,17,.12);box-shadow:0 18px 60px rgba(0,0,0,.2);overflow:hidden;display:none}
+.lv-assistant-toggle{width:52px;height:52px;border-radius:50%;border:1px solid rgba(17,17,17,.14);background:#111;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.16);font-size:12px;font-weight:700;letter-spacing:.04em;transition:transform .2s ease}
+.lv-assistant-toggle:hover{transform:translateY(-2px)}
+.lv-assistant-toggle span{font-size:11px;letter-spacing:.08em}
+.lv-assistant-panel{position:absolute;right:0;bottom:64px;width:min(390px,calc(100vw - 32px));background:#f8f7f2;color:#111;border:1px solid rgba(17,17,17,.10);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.18);overflow:hidden;display:none}
 .lv-assistant.open .lv-assistant-panel{display:block}
-.lv-assistant-head{padding:17px 18px;border-bottom:1px solid rgba(17,17,17,.10);display:flex;justify-content:space-between;align-items:center}
-.lv-assistant-head strong{font-size:12px;letter-spacing:.14em;text-transform:uppercase}.lv-assistant-head small{color:#777;font-size:11px}
-.lv-assistant-close{border:0;background:none;font-size:22px;line-height:1;cursor:pointer;color:#555}
-.lv-assistant-messages{height:300px;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
-.lv-msg{max-width:88%;padding:11px 13px;font-size:13px;line-height:1.5}.lv-msg.bot{background:#e9e8e2;align-self:flex-start}.lv-msg.user{background:#111;color:#fff;align-self:flex-end}
-.lv-assistant-chips{display:flex;gap:7px;overflow:auto;padding:0 16px 12px}.lv-chip{white-space:nowrap;border:1px solid rgba(17,17,17,.15);background:transparent;border-radius:999px;padding:8px 10px;font-size:10px;letter-spacing:.04em;cursor:pointer}
-.lv-assistant-form{display:flex;border-top:1px solid rgba(17,17,17,.10);padding:10px;gap:7px}.lv-assistant-form input{min-width:0;flex:1;border:1px solid rgba(17,17,17,.14);background:#fff;padding:11px 12px;font-size:13px;outline:none}.lv-assistant-form button{border:0;background:#111;color:#fff;padding:0 14px;cursor:pointer;font-size:11px;letter-spacing:.08em}
-@media(max-width:700px){.lv-assistant{right:14px;bottom:14px}.lv-assistant-toggle{width:50px;height:50px}.lv-assistant-panel{bottom:62px;width:min(350px,calc(100vw - 28px))}.lv-assistant-messages{height:270px}}
+.lv-assistant-head{padding:18px 19px 16px;border-bottom:1px solid rgba(17,17,17,.09);display:flex;justify-content:space-between;align-items:center}
+.lv-assistant-head strong{display:block;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin-bottom:4px}.lv-assistant-head small{color:#777;font-size:11px;line-height:1.4}
+.lv-assistant-close{width:30px;height:30px;border:0;border-radius:50%;background:rgba(17,17,17,.05);font-size:18px;line-height:1;cursor:pointer;color:#444}
+.lv-assistant-messages{height:255px;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:10px}
+.lv-msg{max-width:88%;padding:11px 13px;border-radius:12px;font-size:13px;line-height:1.5}.lv-msg.bot{background:#e9e8e2;align-self:flex-start}.lv-msg.user{background:#111;color:#fff;align-self:flex-end}
+.lv-assistant-chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 18px 15px}.lv-chip{white-space:nowrap;border:1px solid rgba(17,17,17,.16);background:transparent;border-radius:999px;padding:8px 11px;font-size:10px;letter-spacing:.02em;cursor:pointer;transition:background .15s ease}.lv-chip:hover{background:#e9e8e2}
+.lv-assistant-form{display:flex;border-top:1px solid rgba(17,17,17,.09);padding:10px;gap:7px;background:#f8f7f2}.lv-assistant-form input{min-width:0;flex:1;border:1px solid rgba(17,17,17,.13);border-radius:10px;background:#fff;padding:11px 12px;font-size:13px;outline:none}.lv-assistant-form input:focus{border-color:rgba(17,17,17,.35)}.lv-assistant-form button{border:0;border-radius:10px;background:#111;color:#fff;padding:0 15px;cursor:pointer;font-size:10px;letter-spacing:.08em;font-weight:700}
+@media(max-width:700px){.lv-assistant{right:12px;bottom:12px}.lv-assistant-toggle{width:50px;height:50px}.lv-assistant-panel{right:0;bottom:60px;width:calc(100vw - 24px);max-width:390px;border-radius:16px}.lv-assistant-messages{height:240px;padding:16px}.lv-assistant-chips{padding:0 16px 13px}}
