@@ -1,5 +1,66 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lesloy Visuals — Binnenkort online</title><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f5f4ef"><style>
-:root{--bg:#f5f4ef;--ink:#111;--muted:#70706b;--line:rgba(17,17,17,.14)}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}body{display:flex;align-items:center;justify-content:center;padding:24px}main{width:min(920px,100%);text-align:center}.brand{font-size:12px;letter-spacing:.28em;font-weight:700;margin-bottom:70px}.kicker{font-size:11px;letter-spacing:.24em;color:var(--muted);margin-bottom:18px}h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(48px,9vw,94px);line-height:.92;letter-spacing:-.045em;margin:0}h1 em{font-weight:400}.sub{max-width:520px;margin:26px auto 0;color:#555;line-height:1.65;font-size:16px}.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:650px;margin:54px auto 38px}.unit{padding:20px 10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.num{font-family:Georgia,serif;font-size:clamp(36px,7vw,62px);line-height:1}.label{font-size:9px;letter-spacing:.2em;color:var(--muted);margin-top:9px}.preview{display:flex;justify-content:center}.code-btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:15px 22px;border-radius:999px;letter-spacing:.14em;font-size:10px;cursor:pointer}.code-box{display:none;margin:18px auto 0;max-width:360px}.code-box.open{display:flex;gap:8px}.code-box input{min-width:0;flex:1;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:16px}.code-box button{padding:0 18px;border:0;border-radius:10px;background:#111;color:#fff}.msg{min-height:22px;margin-top:10px;font-size:12px;color:#777}@media(max-width:560px){body{padding:18px}.brand{margin-bottom:48px}.timer{gap:6px;margin-top:42px}.unit{padding:16px 5px}.label{font-size:8px;letter-spacing:.13em}.sub{font-size:15px}} 
-</style></head><body data-assistant="off"><main><div class="brand">LESLOY VISUALS</div><div class="kicker">NIEUWE WEBSITE · BINNENKORT ONLINE</div><h1>WE ZIJN<br><em>BIJNA KLAAR.</em></h1><p class="sub">De nieuwe Lesloy Visuals website gaat op <strong>5 oktober 2026</strong> live. Tot die tijd wordt er nog aan de laatste details gewerkt.</p><section class="timer"><div class="unit"><div class="num" id="days">--</div><div class="label">DAGEN</div></div><div class="unit"><div class="num" id="hours">--</div><div class="label">UREN</div></div><div class="unit"><div class="num" id="minutes">--</div><div class="label">MINUTEN</div></div><div class="unit"><div class="num" id="seconds">--</div><div class="label">SECONDEN</div></div></section><div class="preview"><button class="code-btn" id="openCode" type="button">SITE BEKIJKEN MET CODE</button></div><form class="code-box" id="codeBox"><input id="code" type="password" inputmode="text" autocomplete="off" placeholder="Toegangscode" aria-label="Toegangscode"><button type="submit">OPEN</button></form><div class="msg" id="msg" aria-live="polite"></div></main><script>
-const launch=Date.parse("2026-10-05T00:00:00+02:00"),pad=n=>String(n).padStart(2,"0");function tick(){const d=Math.max(0,launch-Date.now()),t=Math.floor(d/1000);document.getElementById("days").textContent=Math.floor(t/86400);document.getElementById("hours").textContent=pad(Math.floor(t%86400/3600));document.getElementById("minutes").textContent=pad(Math.floor(t%3600/60));document.getElementById("seconds").textContent=pad(t%60);if(d<=0)location.href="/site.html"}tick();setInterval(tick,1000);document.getElementById("openCode").onclick=()=>{const b=document.getElementById("codeBox");b.classList.toggle("open");if(b.classList.contains("open"))document.getElementById("code").focus()};document.getElementById("codeBox").onsubmit=e=>{e.preventDefault();if(document.getElementById("code").value.trim()==="LESLOY2026"){sessionStorage.setItem("lesloy_preview","1");location.href="/site.html"}else document.getElementById("msg").textContent="Deze code klopt niet."};
-</script></body></html>
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#08090b">
+  <title>Lesloy Visuals — We vernieuwen</title>
+  <meta name="description" content="Lesloy Visuals krijgt een nieuwe uitstraling. Binnenkort zie je meer.">
+  <style>
+    :root{color-scheme:dark;--bg:#08090b;--white:#f4f3ef;--muted:#92949a;--line:rgba(255,255,255,.15)}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+    body{min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#24262b 0%,#111216 34%,#08090b 72%)}
+    .grain{position:fixed;inset:0;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E")}
+    .shell{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;padding:30px clamp(22px,5vw,76px) 26px}
+    header,footer{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .mark{width:39px;height:39px;border:1px solid rgba(255,255,255,.65);display:grid;place-items:center;font-family:Georgia,serif;font-style:italic;font-size:18px;box-shadow:inset 0 0 16px rgba(255,255,255,.08)}
+    .brand-name{font-size:11px;letter-spacing:.22em;font-weight:700}.brand-name span{display:block;font-size:8px;letter-spacing:.34em;color:var(--muted);margin-top:4px;font-weight:400}
+    .status{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#bfc0c4;display:flex;align-items:center;gap:9px}
+    .dot{width:6px;height:6px;border-radius:50%;background:#d9d9d5;box-shadow:0 0 12px #fff;animation:pulse 1.8s infinite}
+    main{flex:1;display:grid;place-items:center;text-align:center;position:relative;isolation:isolate;padding:25px 0 40px}
+    .visual{position:absolute;width:min(54vw,560px);aspect-ratio:1;left:50%;top:47%;transform:translate(-50%,-50%);z-index:-1;perspective:900px;pointer-events:none}
+    .orb{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle at 35% 27%,#777b82 0%,#34373d 14%,#111318 43%,#050608 68%);box-shadow:inset -24px -28px 55px #000,inset 9px 9px 28px rgba(255,255,255,.22),0 0 90px rgba(190,196,210,.12);animation:float 7s ease-in-out infinite}
+    .ring{position:absolute;left:50%;top:50%;width:110%;height:37%;border:1px solid rgba(232,235,242,.62);border-radius:50%;transform:translate(-50%,-50%) rotateX(67deg) rotateZ(-22deg);box-shadow:0 0 18px rgba(255,255,255,.15),inset 0 0 12px rgba(255,255,255,.08);animation:orbit 15s linear infinite}
+    .ring.r2{width:126%;height:47%;transform:translate(-50%,-50%) rotateX(67deg) rotateZ(48deg);border-color:rgba(150,157,170,.42);animation-direction:reverse;animation-duration:21s}
+    .shine{position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;top:24%;left:22%;box-shadow:0 0 22px 8px rgba(255,255,255,.25)}
+    .content{max-width:800px;padding:30px 20px}
+    .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#b9bbc1;margin-bottom:27px}
+    h1{font-size:clamp(42px,8.3vw,104px);line-height:.92;letter-spacing:-.075em;text-transform:uppercase;margin:0;font-weight:800}
+    h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(244,243,239,.78);text-shadow:0 0 30px rgba(255,255,255,.07)}
+    .desc{font-size:clamp(13px,1.4vw,16px);line-height:1.7;color:#b6b7bc;max-width:440px;margin:28px auto 0}
+    .contact{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding:13px 19px;border:1px solid var(--line);border-radius:2px;color:var(--white);text-decoration:none;font-size:10px;letter-spacing:.15em;text-transform:uppercase;transition:background .25s,border-color .25s,transform .25s}
+    .contact:hover{background:#f2f1ed;color:#08090b;border-color:#f2f1ed;transform:translateY(-2px)}
+    footer{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#777a82}
+    footer a{color:#bfc0c4;text-decoration:none}footer a:hover{color:#fff}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+    @keyframes orbit{from{transform:translate(-50%,-50%) rotateX(67deg) rotateZ(-22deg)}to{transform:translate(-50%,-50%) rotateX(67deg) rotateZ(338deg)}}
+    @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+    @media(max-width:600px){.shell{padding:22px 20px 20px}.status{font-size:8px}.visual{width:100vw;top:45%}.content{padding:25px 8px}.eyebrow{font-size:8px;margin-bottom:23px}h1{font-size:clamp(43px,13vw,68px)}.desc{max-width:310px;font-size:13px;margin-top:22px}footer{font-size:8px;letter-spacing:.1em}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="shell">
+    <header>
+      <a class="brand" href="/" aria-label="Lesloy Visuals">
+        <span class="mark">LV</span><span class="brand-name">LESLOY<span>VISUALS</span></span>
+      </a>
+      <div class="status"><i class="dot"></i> Website in vernieuwing</div>
+    </header>
+    <main>
+      <div class="visual" aria-hidden="true"><div class="orb"></div><div class="ring"></div><div class="ring r2"></div><div class="shine"></div></div>
+      <section class="content">
+        <div class="eyebrow">A new visual experience is loading</div>
+        <h1>WE ZIJN<br><span>BACKSTAGE.</span></h1>
+        <p class="desc">Lesloy Visuals krijgt een compleet nieuwe uitstraling. We werken achter de schermen aan iets nieuws. Binnenkort zie je het resultaat.</p>
+        <a class="contact" href="mailto:lesloyzakelijk@gmail.com">Voor vragen · Neem contact op <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+    <footer><span>© 2026 Lesloy Visuals</span><a href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">Instagram ↗</a></footer>
+  </div>
+</body>
+</html>

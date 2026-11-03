@@ -38,32 +38,8 @@
   ],
   "rewrites": [
     {
-      "source": "/work",
-      "destination": "/work.html"
-    },
-    {
-      "source": "/about",
-      "destination": "/about.html"
-    },
-    {
-      "source": "/services",
-      "destination": "/services.html"
-    },
-    {
-      "source": "/duo",
-      "destination": "/duo.html"
-    },
-    {
-      "source": "/contact",
-      "destination": "/contact.html"
-    },
-    {
-      "source": "/review",
-      "destination": "/review.html"
-    },
-    {
-      "source": "/pricing",
-      "destination": "/pricing.html"
+      "source": "/(.*)",
+      "destination": "/maintenance.html"
     }
   ]
 }
