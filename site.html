@@ -108,3 +108,9 @@ const light1=new THREE.PointLight(0x65e8f0,34,12);light1.position.set(3,2,4);sce
 const resize=()=>{const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};new ResizeObserver(resize).observe(canvas);let tx=0,ty=0;canvas.parentElement.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*.7;ty=((e.clientY-r.top)/r.height-.5)*.5});let frameId;const tick=()=>{frameId=requestAnimationFrame(tick);if(!reduced){root.rotation.y+=(tx-root.rotation.y)*.035;root.rotation.x+=(-ty-root.rotation.x)*.035;ring1.rotation.z+=.0018;ring2.rotation.z-=.0012;hub.rotation.z+=.002}renderer.render(scene,camera)};tick();document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(frameId);else if(!reduced)tick()})}
 </script>
 <script>document.addEventListener('DOMContentLoaded',()=>{const s=document.querySelector('.optical-stage'),r=document.querySelector('.focus-reticle');if(s&&r&&matchMedia('(pointer:fine)').matches){s.addEventListener('pointermove',e=>{const b=s.getBoundingClientRect();r.style.transform=`translate(${((e.clientX-b.left)/b.width-.5)*28}px,${((e.clientY-b.top)/b.height-.5)*28}px)`});s.addEventListener('pointerleave',()=>r.style.transform='translate(0,0)')}});</script></body></html>
+
+
+
+
+
+
