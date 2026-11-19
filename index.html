@@ -1,94 +1,97 @@
-<!doctype html>
-<html lang="nl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#08090b">
-  <title>Lesloy Visuals — We vernieuwen</title>
-  <meta name="description" content="Lesloy Visuals krijgt een nieuwe uitstraling. Binnenkort zie je meer.">
-  <style>
-    :root{color-scheme:dark;--bg:#08090b;--white:#f4f3ef;--muted:#92949a;--line:rgba(255,255,255,.15)}
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
-    body{min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#24262b 0%,#111216 34%,#08090b 72%)}
-    .grain{position:fixed;inset:0;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E")}
-    .shell{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;padding:30px clamp(22px,5vw,76px) 26px}
-    header,footer{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-    .mark{width:39px;height:39px;border:1px solid rgba(255,255,255,.65);display:grid;place-items:center;font-family:Georgia,serif;font-style:italic;font-size:18px;box-shadow:inset 0 0 16px rgba(255,255,255,.08)}
-    .brand-name{font-size:11px;letter-spacing:.22em;font-weight:700}.brand-name span{display:block;font-size:8px;letter-spacing:.34em;color:var(--muted);margin-top:4px;font-weight:400}
-    .status{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#bfc0c4;display:flex;align-items:center;gap:9px}
-    .dot{width:6px;height:6px;border-radius:50%;background:#d9d9d5;box-shadow:0 0 12px #fff;animation:pulse 1.8s infinite}
-    main{flex:1;display:grid;place-items:center;text-align:center;position:relative;isolation:isolate;padding:25px 0 40px}
-    .visual{position:absolute;width:min(54vw,560px);aspect-ratio:1;left:50%;top:47%;transform:translate(-50%,-50%);z-index:-1;perspective:900px;pointer-events:none}
-    .orb{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle at 35% 27%,#777b82 0%,#34373d 14%,#111318 43%,#050608 68%);box-shadow:inset -24px -28px 55px #000,inset 9px 9px 28px rgba(255,255,255,.22),0 0 90px rgba(190,196,210,.12);animation:float 7s ease-in-out infinite}
-    .ring{position:absolute;left:50%;top:50%;width:110%;height:37%;border:1px solid rgba(232,235,242,.62);border-radius:50%;transform:translate(-50%,-50%) rotateX(67deg) rotateZ(-22deg);box-shadow:0 0 18px rgba(255,255,255,.15),inset 0 0 12px rgba(255,255,255,.08);animation:orbit 15s linear infinite}
-    .ring.r2{width:126%;height:47%;transform:translate(-50%,-50%) rotateX(67deg) rotateZ(48deg);border-color:rgba(150,157,170,.42);animation-direction:reverse;animation-duration:21s}
-    .shine{position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;top:24%;left:22%;box-shadow:0 0 22px 8px rgba(255,255,255,.25)}
-    .content{max-width:800px;padding:30px 20px}
-    .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#b9bbc1;margin-bottom:27px}
-    h1{font-size:clamp(42px,8.3vw,104px);line-height:.92;letter-spacing:-.075em;text-transform:uppercase;margin:0;font-weight:800}
-    h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(244,243,239,.78);text-shadow:0 0 30px rgba(255,255,255,.07)}
-    .desc{font-size:clamp(13px,1.4vw,16px);line-height:1.7;color:#b6b7bc;max-width:440px;margin:28px auto 0}
-    .contact{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding:13px 19px;border:1px solid var(--line);border-radius:2px;color:var(--white);text-decoration:none;font-size:10px;letter-spacing:.15em;text-transform:uppercase;transition:background .25s,border-color .25s,transform .25s}
-    .contact:hover{background:#f2f1ed;color:#08090b;border-color:#f2f1ed;transform:translateY(-2px)}
-    .access{margin:24px auto 0;max-width:340px;text-align:left}
-    .access-toggle{display:block;margin:0 auto;background:transparent;border:0;color:#858891;font:inherit;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;padding:10px}
-    .access-panel{display:none;gap:8px;margin-top:8px}
-    .access-panel.open{display:flex}
-    .access-panel input{min-width:0;flex:1;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff;padding:13px 14px;border-radius:2px;outline:none}
-    .access-panel button{background:#eee;color:#090a0c;border:0;padding:0 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
-    .access-error{display:none;color:#ffb4b4;font-size:11px;margin:8px 0 0}.access-error.show{display:block}
-    footer{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#777a82}
-    footer a{color:#bfc0c4;text-decoration:none}footer a:hover{color:#fff}
-    @keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-16px) rotate(4deg)}}
-    @keyframes orbit{from{transform:translate(-50%,-50%) rotateX(67deg) rotateZ(-22deg)}to{transform:translate(-50%,-50%) rotateX(67deg) rotateZ(338deg)}}
-    @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
-    @media(max-width:600px){.shell{padding:22px 20px 20px}.status{font-size:8px}.visual{width:100vw;top:45%}.content{padding:25px 8px}.eyebrow{font-size:8px;margin-bottom:23px}h1{font-size:clamp(43px,13vw,68px)}.desc{max-width:310px;font-size:13px;margin-top:22px}footer{font-size:8px;letter-spacing:.1em}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
-  </style>
-</head>
-<body>
-  <div class="grain"></div>
-  <div class="shell">
-    <header>
-      <a class="brand" href="/" aria-label="Lesloy Visuals">
-        <span class="mark">LV</span><span class="brand-name">LESLOY<span>VISUALS</span></span>
-      </a>
-      <div class="status"><i class="dot"></i> Website in vernieuwing</div>
-    </header>
-    <main>
-      <div class="visual" aria-hidden="true"><div class="orb"></div><div class="ring"></div><div class="ring r2"></div><div class="shine"></div></div>
-      <section class="content">
-        <div class="eyebrow">A new visual experience is loading</div>
-        <h1>WE ZIJN<br><span>BACKSTAGE.</span></h1>
-        <p class="desc">Lesloy Visuals krijgt een compleet nieuwe uitstraling. We werken achter de schermen aan iets nieuws. Binnenkort zie je het resultaat.</p>
-        <a class="contact" href="mailto:lesloyzakelijk@gmail.com">Voor vragen · Neem contact op <span aria-hidden="true">↗</span></a>
-        <div class="access">
-          <button class="access-toggle" type="button" id="accessToggle">Toegang voor team / preview</button>
-          <form class="access-panel" id="accessForm">
-            <input id="accessCode" type="password" placeholder="Toegangscode" autocomplete="off" aria-label="Toegangscode" required>
-            <button type="submit">Open site</button>
-          </form>
-          <p class="access-error" id="accessError">Deze code klopt niet. Probeer het opnieuw.</p>
-        </div>
-      </section>
-    </main>
-    <footer><span>© 2026 Lesloy Visuals</span><a href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">Instagram ↗</a></footer>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050505"><meta name="description" content="Lesloy Visuals — creatieve fotografie door Lesley Samuels voor portretten, automotive, bruiloften, events en creatieve shoots."><meta property="og:title" content="Home — Lesloy Visuals"><meta property="og:description" content="Creatief fotografie door Lesley Samuels."><meta property="og:type" content="website"><title>Home — Lesloy Visuals</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#f5f4ef"><meta name="version" content="Lesloy Visuals V18 — Duo"><script>(function(){const l=Date.parse("2026-10-05T00:00:00+02:00");if(Date.now()<l&&sessionStorage.getItem("lesloy_preview")!=="1")location.replace("/")})();</script></head><body><header><a class="logo" href="/site.html" aria-label="Lesloy Visuals home"><span>LV</span><b>LESLOY</b><small>VISUALS</small></a><nav><a href="/work">WERK</a><a href="/about">OVER MIJ</a><a href="/services">DIENSTEN</a><a href="/duo">DUO</a><a href="/pricing">PRIJZEN</a><a href="/contact">CONTACT</a></nav><a class="insta" href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">IG ↗</a><button class="menu" aria-label="Menu" aria-expanded="false">☰</button></header><main>
+<section class="hero"><img src="images/hero.jpg" alt="Lesloy Visuals fotografie"><div class="hero-grad"></div><div class="hero-copy"><div class="tiny">LESLOY VISUALS / FOTOGRAFIE</div><h1>MAAK<br><i>HET VISUEEL.</i></h1><p>Creatieve fotografie door Lesley Samuels.<br>Voor mensen, verhalen, auto's & momenten.</p><p><a class="btn" href="/contact">START EEN OPDRACHT ↗</a></p></div><div class="hero-side">PORTRETTEN · AUTO'S · BRUILOFTEN · CREATIEF</div><div class="hero-bottom"><span>NL — 2026</span><span>SCROLL ↓</span></div></section>
+<section class="marquee"><div class="marquee-track"><div class="marquee-item">PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i> PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i></div><div class="marquee-item">PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i> PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i></div></div></section>
+<section class="section reveal"><div class="work-intro"><div><div class="eyebrow">01 / GESELECTEERD WERK</div><h2>ECHT WERK.<br><i>ECHTE VERHALEN.</i></h2></div><p>Een kleine selectie van mijn huidige werk. Nog klein in omvang, maar bewust gekozen. Nieuwe shoots worden hier steeds toegevoegd.</p></div><div class="gallery"><figure class="tall"><img src="images/portrait-01.jpg" alt="Portret door Lesloy Visuals"><figcaption>01 — PORTRAIT</figcaption></figure><figure><img src="images/city-01.jpg" alt="Automotive en city fotografie"><figcaption>02 — AUTOMOTIVE / CITY</figcaption></figure><figure><img src="images/portrait-02.jpg" alt="Portret door Lesloy Visuals"><figcaption>03 — PORTRAIT</figcaption></figure><figure class="wide"><img src="images/portrait-03.jpg" alt="Golden hour fotografie"><figcaption>04 — GOLDEN HOUR</figcaption></figure></div><p style="margin:35px 0 0"><a class="line-link" href="/work">BEKIJK AL HET WERK ↗</a></p></section>
+<section class="section reveal"><div class="split"><div class="split-img"><img src="images/lesley.jpg" alt="Lesley Samuels — Lesloy Visuals"></div><div class="split-copy"><div class="eyebrow">02 / DE PERSOON ACHTER DE CAMERA</div><h2>HI, IK BEN<br><i>LESLEY.</i></h2><p>Ik hou ervan om gewone momenten op een andere manier te bekijken en er een beeld van te maken dat karakter heeft.</p><p>Van een bruiloft tot een auto, van een portret tot een compleet idee: ik denk creatief met je mee en vertaal het naar beeld.</p><a class="line-link" href="/about">MEER OVER MIJ ↗</a></div></div></section>
+<section class="section reveal"><div class="section-head"><div class="eyebrow">03 / WAT IK DOE</div><p>Geen standaard pakket nodig? Vertel wat je wilt maken. We maken de shoot passend bij jouw idee.</p></div><div class="services-grid"><article class="service"><b>01</b><h2>Automotive</h2><p>Auto's, details, builds en social content met een cinematic uitstraling.</p></article><article class="service"><b>02</b><h2>Portretten</h2><p>Persoonlijke portretten, lifestyle en creatieve shoots.</p></article><article class="service"><b>03</b><h2>Bruiloften</h2><p>De sfeer, details en momenten van jullie dag.</p></article><article class="service"><b>04</b><h2>Creatief</h2><p>Een concept of idee? We bouwen het beeld samen.</p></article></div><p style="margin:35px 0 0"><a class="line-link" href="/services">BEKIJK ALLE DIENSTEN ↗</a></p></section>
+
+<section class="section reveal duo-home">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">04 / SAMENWERKING</div>
+      <h2 class="section-title">LESLOY VISUALS<br><i>× SMIT WORKS.</i></h2>
+    </div>
+    <p>Twee fotografen, één team. Lesley en Jayden zijn samen te boeken voor shoots, events, automotive en creatieve producties.</p>
   </div>
-<script>
-  const toggle = document.getElementById('accessToggle');
-  const form = document.getElementById('accessForm');
-  const error = document.getElementById('accessError');
-  toggle.addEventListener('click', () => { form.classList.toggle('open'); if(form.classList.contains('open')) document.getElementById('accessCode').focus(); });
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (document.getElementById('accessCode').value.trim() === 'LESLOY2026') {
-      sessionStorage.setItem('lesloy_preview_access', 'granted');
-      window.location.href = '/site.html';
-    } else { error.classList.add('show'); }
-  });
-</script>
-</body>
-</html>
+  <div class="duo-feature">
+    <div class="duo-feature-photo"><img src="images/duo.jpg" alt="Lesley en Jayden samen aan het werk"></div>
+    <div class="duo-feature-copy">
+      <div class="duo-mark">LESLOY VISUALS <span>×</span> SMIT WORKS</div>
+      <h3>Twee perspectieven.<br><i>Eén eindresultaat.</i></h3>
+      <p>Je kunt ons afzonderlijk boeken, maar ook samen als fotografieduo. Ideaal wanneer je meerdere perspectieven, meer dekking of simpelweg twee creatieve ogen op één project wilt.</p>
+      <a class="btn" href="/duo">BOEK HET DUO ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">04 / WHY LESLOY</div>
+      <h2 class="section-title">MAKE IT<br><i>PERSONAL.</i></h2>
+    </div>
+    <p>Geen standaard aanpak. We maken samen een beeld dat past bij jou, je merk, je auto, je event of je idee.</p>
+  </div>
+  <div class="why-grid">
+    <article class="why-card"><span>01</span><h3>CREATIVE</h3><p>Ik denk mee over locatie, licht, compositie en sfeer — van eerste idee tot eindbeeld.</p></article>
+    <article class="why-card"><span>02</span><h3>PERSONAL</h3><p>Elke shoot krijgt een eigen aanpak. Geen lopende band, maar beelden die bij jou passen.</p></article>
+    <article class="why-card"><span>03</span><h3>VISUAL</h3><p>Een sterke foto moet niet alleen mooi zijn. Hij moet iets uitstralen en blijven hangen.</p></article>
+  </div>
+</section>
+
+<section class="section reveal published-reviews">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">05 / KLANTREVIEW</div>
+      <h2 class="section-title">WAT KLANTEN<br><i>ZEGGEN.</i></h2>
+    </div>
+    <p>Echte ervaringen van mensen die met Lesloy Visuals hebben gewerkt.</p>
+  </div>
+  <article class="review-card">
+    <div class="stars">★★★★★</div>
+    <blockquote>“In de efteling tijdens de JINC Awards zat ik in de jury. Een mooie ervaring, en een perfect moment om foto's te laten maken. Ik heb door Lesley in het Fata Morgana Pangalais foto's laten maken, ik was erg tevreden met de service Lesley denkt creatief mee en de foto's waren super mooi!”</blockquote>
+    <div class="review-meta">
+      <strong>Luca Heintjes</strong>
+      <span>Event · 5 sterren</span>
+    </div>
+  </article>
+</section>
+
+
+
+<section class="section reveal v10-services">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">03 / DIENSTEN</div>
+      <h2 class="section-title">JOUW IDEE.<br><i>MIJN BEELD.</i></h2>
+    </div>
+    <p>Van auto's en portretten tot events, bruiloften en creatieve concepten. Samen maken we beelden die blijven hangen.</p>
+  </div>
+  <div class="v10-service-list">
+    <a class="v10-service" href="/services"><span class="v10-emoji">🚗</span><b>AUTO'S</b><span>↗</span></a>
+    <a class="v10-service" href="/services"><span class="v10-emoji">📸</span><b>PORTRETTEN</b><span>↗</span></a>
+    <a class="v10-service" href="/services"><span class="v10-emoji">🎉</span><b>EVENTS</b><span>↗</span></a>
+    <a class="v10-service" href="/services"><span class="v10-emoji">💍</span><b>BRUILOFTEN</b><span>↗</span></a>
+    <a class="v10-service" href="/services"><span class="v10-emoji">🎨</span><b>CREATIEF</b><span>↗</span></a>
+  </div>
+</section>
+
+<section class="launch-offer reveal">
+  <div class="launch-copy">
+    <div class="eyebrow">TIJDELIJK / LESLOY LANCERINGSACTIE</div>
+    <h2>YOUR EERSTE<br><i>SHOOT.</i></h2>
+    <p>Start your Lesloy experience with a 60-minute shoot and 15 professionally edited photos.</p>
+  </div>
+  <div class="launch-deal">
+    <div class="launch-price"><small>EERSTE SHOOT</small><strong>€50</strong></div>
+    <div class="launch-details">
+      <span>± 60 MINUTEN</span>
+      <span>15 BEWERKTE FOTO'S</span>
+      <span>BEPERKT BESCHIKBAAR</span>
+    </div>
+    <a class="btn launch-btn" href="/contact?offer=launch">BOEK JOUW SHOOT ↗</a>
+  </div>
+</section>
+
+<section class="contact-wrap reveal"><div class="eyebrow">07 / LET'S CREATE</div><h1>HEB JE EEN<br><i>IDEE?</i></h1><p>Heb je een shoot in gedachten? Vertel me wat je wilt maken. Ik denk met je mee.</p><p><a class="btn" href="/contact">START EEN OPDRACHT ↗</a></p><div class="contact-direct"><a href="mailto:lesloyzakelijk@gmail.com">LESLOYZAKELIJK@GMAIL.COM ↗</a><a href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">INSTAGRAM @LESLEY.0492 ↗</a></div></section>
+</main><footer><span>© 2026 LESLOY VISUALS</span><span>LESLEY SAMUELS</span><a href="mailto:lesloyzakelijk@gmail.com">lesloyzakelijk@gmail.com</a><a href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">@lesley.0492 ↗</a></footer><script src="script.js"></script></body></html>
