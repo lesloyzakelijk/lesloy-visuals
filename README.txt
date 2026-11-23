@@ -1,23 +1,24 @@
-LESLOY VISUALS — THE DIGITAL EXPERIENCE (V2)
+LESLOY VISUALS — THE UNIVERSE V2.1 (BLANK SCREEN FIX)
 
-Dit is de nieuwe Colorful Surreal websiteversie. De homepage gebruikt de goedgekeurde Lesloy Universe-compositie als openingsbeeld. De tekst en navigatie in dat beeld worden op desktop bediend met onzichtbare, echte klikvlakken; op mobiel is er een apart menu en een duidelijke Explore-knop.
+Deze versie lost een foutbestendige weergave op voor de homepage. De goedgekeurde LESLOY UNIVERSE-compositie is rechtstreeks in index.html opgenomen, zodat de hero niet afhankelijk is van het apart uploaden van het grote afbeeldingsbestand. Daarnaast blijft de overige inhoud standaard zichtbaar wanneer JavaScript of animaties niet beschikbaar zijn. Animaties worden alleen als progressive enhancement ingeschakeld.
 
 INHOUD
-- Homepage met goedgekeurde LESLOY VISUALS hero-artwork, navigatie-hotspots en portfolio-sectie
+- Homepage met de goedgekeurde LESLOY VISUALS hero-compositie en klikvlakken
 - Portfolio, Diensten, Duo, Over mij, Prijzen, Reviews en Contact
-- Werkende contact- en reviewformulieren via FormSubmit (eerste gebruik kan e-mailverificatie door FormSubmit vereisen)
-- Interactieve Three.js-omgeving op de services-wereld wanneer WebGL en CDN beschikbaar zijn; zonder die onderdelen blijven de CSS-visuals zichtbaar
-- Responsieve mobiele navigatie, hoverdiepte, lightbox, formulieren en reduced-motion ondersteuning
+- Contact- en reviewformulieren (FormSubmit kan bij eerste gebruik e-mailverificatie vragen)
+- Interactieve Three.js-omgeving op de services-wereld wanneer WebGL en de CDN beschikbaar zijn
+- Responsieve mobiele navigatie, lightbox, hoverdiepte en reduced-motion ondersteuning
 - Vercel clean URL-configuratie, robots.txt en sitemap.xml
+- Cache-busting voor de homepage CSS- en JS-bestanden
 
-UPLOADEN NAAR GITHUB / VERCEL
-1. Pak deze ZIP uit.
-2. Open de uitgepakte map. Selecteer ALLE bestanden en de map images binnen die map.
-3. Upload de inhoud naar de hoofdmap (root) van het GitHub-project. Upload dus niet de bovenliggende map en niet alleen het ZIP-bestand.
-4. Commit de wijzigingen. Vercel start daarna automatisch een deployment.
-5. Controleer eerst de Vercel-preview voordat je de productieomgeving gebruikt.
+BELANGRIJK — UPLOADEN
+1. Download deze ZIP en pak hem eerst uit op je computer.
+2. Open de uitgepakte map. Je moet daar direct index.html, style.css, script.js, vercel.json en de map images zien.
+3. Open de hoofdmap (root) van je GitHub-repository. Upload de inhoud van de uitgepakte map, niet de bovenliggende map en niet de ZIP zelf.
+4. Vervang de bestaande index.html, style.css, script.js en vercel.json. Upload ook de volledige map images.
+5. Commit de wijzigingen en controleer in Vercel of de nieuwste deployment op Ready staat.
+6. Open daarna lesloyvisuals.nl en doe een harde refresh met Ctrl + Shift + R.
 
-LET OP
-- Behoud de map images en vercel.json in de root.
-- De Three.js-scene wordt van cdnjs geladen. Als een bezoeker de CDN niet kan bereiken, blijft de rest van de website werken.
-- De homepage-compositie is een geoptimaliseerd WebP-bestand. De originele PNG is ook opgenomen als bronbestand.
+Als de website nog leeg blijft, controleer dan in GitHub of index.html en style.css direct op repository-niveau staan. Ze mogen niet in een extra map zoals lesloy_universe_v2/ staan.
+
+De homepage-hero is ingebed in index.html als extra beveiliging tegen een ontbrekende afbeelding. Voor portfoliofoto's en overige beeldbestanden blijft de map images nodig.

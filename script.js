@@ -1,3 +1,4 @@
+document.documentElement.classList.add('js-motion');
 document.addEventListener('DOMContentLoaded',()=>{
   const menu=document.querySelector('.menu-toggle');
   const nav=document.querySelector('.nav');
@@ -16,10 +17,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     posterMenu.classList.remove('open');posterMenuButtons.forEach(b=>b.setAttribute('aria-expanded','false'));
   });
 
-  const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}
-  }),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(element=>obs.observe(element));
+  const revealElements=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}
+    }),{threshold:.12});
+    revealElements.forEach(element=>obs.observe(element));
+  }else{
+    revealElements.forEach(element=>element.classList.add('visible'));
+  }
 
   const glow=document.querySelector('.cursor-glow');
   if(glow&&matchMedia('(pointer:fine)').matches){window.addEventListener('pointermove',event=>{
