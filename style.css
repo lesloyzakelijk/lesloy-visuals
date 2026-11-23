@@ -189,3 +189,31 @@ body:not(.home-universe):after{content:"";position:fixed;inset:-30%;z-index:-1;p
   .info-card,.price-card,.pillar{border-radius:18px}
 }
 @media(prefers-reduced-motion:reduce){body:not(.home-universe):after{animation:none}.info-card:hover,.price-card:hover,.pillar:hover,.split img:hover,.gallery-grid img:hover,.creator-image-wrap:hover{transform:none}}
+
+
+/* V2.2 — visible motion layer over the approved hero artwork */
+.poster-stage{isolation:isolate}
+.poster-stage::before{
+  content:"";position:absolute;inset:-8%;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 20% 34%,rgba(255,94,210,.22),transparent 35%),
+    radial-gradient(ellipse at 78% 26%,rgba(104,154,255,.18),transparent 34%),
+    linear-gradient(112deg,transparent 25%,rgba(255,231,164,.13) 48%,rgba(255,255,255,.025) 52%,transparent 67%);
+  background-size:150% 150%,150% 150%,240% 100%;
+  background-position:0% 50%,100% 50%,140% 0;
+  mix-blend-mode:screen;opacity:.74;
+  animation:heroAurora 13s ease-in-out infinite alternate,heroLightSweep 10s ease-in-out infinite;
+}
+.poster-image{animation:heroExposure 8s ease-in-out infinite alternate}
+.hero-particles{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;display:block}
+@keyframes heroAurora{
+  0%{background-position:0% 50%,100% 50%,140% 0;opacity:.52}
+  100%{background-position:85% 20%,15% 85%,-120% 0;opacity:.88}
+}
+@keyframes heroLightSweep{
+  0%,18%{background-position:0% 50%,100% 50%,150% 0}
+  72%,100%{background-position:0% 50%,100% 50%,-150% 0}
+}
+@keyframes heroExposure{0%{filter:saturate(1.03) brightness(.99)}100%{filter:saturate(1.11) brightness(1.035)}}
+@media(max-width:900px){.poster-stage::before{opacity:.55}.poster-image{animation:heroExposure 9s ease-in-out infinite alternate}}
+@media(prefers-reduced-motion:reduce){.poster-stage::before,.poster-image{animation:none!important}.hero-particles{display:none}}

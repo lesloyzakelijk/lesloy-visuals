@@ -32,6 +32,60 @@ document.addEventListener('DOMContentLoaded',()=>{
     glow.style.left=event.clientX+'px';glow.style.top=event.clientY+'px';
   },{passive:true});}
 
+  // Animated ambient particles over the approved hero artwork.
+  const heroCanvas=document.querySelector('.hero-particles');
+  if(heroCanvas&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const ctx=heroCanvas.getContext('2d');
+    if(ctx){
+      let w=1,h=1,dpr=1,raf=0,heroVisible=true;
+      const pointer={x:.5,y:.5};
+      const particles=Array.from({length:matchMedia('(max-width: 700px)').matches?36:72},(_,i)=>({
+        x:Math.random(),y:Math.random(),r:.45+Math.random()*1.65,
+        speed:.00012+Math.random()*.00034,phase:Math.random()*Math.PI*2,
+        hue:[43,195,285,320][i%4],alpha:.2+Math.random()*.55,
+        drift:(Math.random()-.5)*.00022
+      }));
+      const resize=()=>{
+        const rect=heroCanvas.getBoundingClientRect();
+        w=Math.max(1,rect.width);h=Math.max(1,rect.height);dpr=Math.min(devicePixelRatio||1,1.5);
+        heroCanvas.width=Math.round(w*dpr);heroCanvas.height=Math.round(h*dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      };
+      resize();window.addEventListener('resize',resize,{passive:true});
+      heroCanvas.parentElement.addEventListener('pointermove',e=>{
+        const r=heroCanvas.parentElement.getBoundingClientRect();
+        pointer.x=(e.clientX-r.left)/r.width;pointer.y=(e.clientY-r.top)/r.height;
+      },{passive:true});
+      const io=new IntersectionObserver(entries=>{
+        heroVisible=entries[0].isIntersecting;
+        if(heroVisible&&!raf)draw();
+      },{threshold:0});io.observe(heroCanvas);
+      document.addEventListener('visibilitychange',()=>{
+        if(document.hidden){cancelAnimationFrame(raf);raf=0}else if(heroVisible&&!raf)draw();
+      });
+      let last=0;
+      function draw(now=0){
+        if(!heroVisible||document.hidden){raf=0;return}
+        raf=requestAnimationFrame(draw);
+        const dt=Math.min(40,now-last||16);last=now;
+        ctx.clearRect(0,0,w,h);
+        particles.forEach(p=>{
+          p.y-=p.speed*dt;p.x+=p.drift*dt;
+          if(p.y<-.025){p.y=1.025;p.x=Math.random()}
+          if(p.x<-.02)p.x=1.02;if(p.x>1.02)p.x=-.02;
+          const twinkle=.45+.55*Math.sin(now*.0013+p.phase);
+          const x=p.x*w+(pointer.x-.5)*p.r*4;
+          const y=p.y*h+(pointer.y-.5)*p.r*3;
+          const radius=p.r*(.75+twinkle*.5);
+          ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);
+          ctx.fillStyle=`hsla(${p.hue},100%,83%,${p.alpha*twinkle})`;ctx.shadowBlur=radius*8;
+          ctx.shadowColor=`hsla(${p.hue},100%,75%,.8)`;ctx.fill();ctx.shadowBlur=0;
+        });
+      }
+      draw();
+    }
+  }
+
   // Subtle pointer parallax on the approved hero artwork. The composition itself stays intact.
   const poster=document.querySelector('.poster-stage');
   const posterImage=document.querySelector('.poster-image');
@@ -40,9 +94,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       const rect=poster.getBoundingClientRect();
       const x=(event.clientX-rect.left)/rect.width-.5;
       const y=(event.clientY-rect.top)/rect.height-.5;
-      posterImage.style.transform=`scale(1.012) translate3d(${x*-5}px,${y*-4}px,0)`;
+      posterImage.style.transform=`scale(1.025) translate3d(${x*-13}px,${y*-10}px,0)`;
     });
-    poster.addEventListener('pointerleave',()=>{posterImage.style.transform='scale(1.002)'});
+    poster.addEventListener('pointerleave',()=>{posterImage.style.transform='scale(1.008)'});
   }
 
   document.querySelectorAll('.gallery-grid img').forEach(img=>img.addEventListener('click',()=>{

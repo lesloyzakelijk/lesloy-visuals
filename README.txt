@@ -22,3 +22,11 @@ BELANGRIJK — UPLOADEN
 Als de website nog leeg blijft, controleer dan in GitHub of index.html en style.css direct op repository-niveau staan. Ze mogen niet in een extra map zoals lesloy_universe_v2/ staan.
 
 De homepage-hero is ingebed in index.html als extra beveiliging tegen een ontbrekende afbeelding. Voor portfoliofoto's en overige beeldbestanden blijft de map images nodig.
+
+
+V2.2 MOTION UPDATE
+- Added animated ambient particle layer over the hero artwork.
+- Added a moving aurora/light-sweep overlay and gentle exposure breathing.
+- Increased desktop pointer parallax.
+- Honors prefers-reduced-motion and pauses particles when the hero is offscreen or the tab is hidden.
+- Note: hero artwork remains a single composite image; independent character/planet/camera animation requires separately layered assets or a dedicated 3D model.
