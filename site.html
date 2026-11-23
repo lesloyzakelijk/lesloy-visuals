@@ -40,8 +40,92 @@ body{position:relative}
  .hero:after{right:-10%;top:25%;width:75vw;height:26vw}
  .section:nth-of-type(even):before,.section:nth-of-type(even):after{opacity:.45}
 }
+</style><style>
+/* V8 — LESLOY signature identity, photography brand remains independent */
+:root{--brand-blue:#0879ed;--brand-blue2:#25b9ff;--brand-yellow:#f5d313;--brand-black:#080d18;--brand-white:#fff}
+body{background:#080d18;color:#fff}
+.topline{height:5px;background:linear-gradient(90deg,#0879ed,#20baff,#f5d313)}
+header{background:rgba(7,13,26,.78)!important;border-bottom:1px solid rgba(255,255,255,.16)!important;backdrop-filter:blur(18px)}
+.logo{color:#fff!important}.logo span{border:1px solid var(--brand-yellow)!important;color:#fff!important;box-shadow:0 0 18px #0879ed66}
+.logo b{letter-spacing:.17em}.logo small{color:#9ecfff!important}
+nav a,.insta{color:#fff!important}
+nav a:hover,.insta:hover{color:var(--brand-yellow)!important}
+.brand-hero{position:relative;min-height:850px;height:min(100svh,1050px);overflow:hidden;isolation:isolate;background:linear-gradient(180deg,#0879ed 0%,#0756b8 52%,#06142c 100%);display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:3vw;padding:145px clamp(28px,6vw,100px) 85px}
+.brand-hero>img,.brand-hero>.hero-grad{display:none!important}
+.brand-sky{position:absolute;inset:0;z-index:-1;overflow:hidden;background:
+radial-gradient(ellipse at 50% 20%,#62d4ff55 0,transparent 38%),
+radial-gradient(ellipse at 8% 15%,#fff8 0,transparent 22%),
+radial-gradient(ellipse at 90% 30%,#fff7 0,transparent 24%),
+linear-gradient(180deg,#0879ed 0%,#0563c9 48%,#06142c 100%)}
+.brand-cloud{position:absolute;width:55vw;height:18vw;min-height:150px;border-radius:50%;filter:blur(18px);opacity:.6;background:radial-gradient(ellipse,#fff 0%,#d6f0ff 25%,#ffffff00 68%)}
+.cloud-one{left:-10%;top:-7%;transform:rotate(8deg)}.cloud-two{right:-12%;bottom:-8%;transform:rotate(-9deg)}
+.brand-planet{position:absolute;width:min(54vw,700px);aspect-ratio:1;border-radius:50%;right:7%;bottom:-55%;background:
+radial-gradient(circle at 35% 25%,#fff8 0 2%,transparent 3%),
+radial-gradient(circle at 35% 35%,#3fbfff,#0755b6 43%,#031a47 68%,#010817 73%);
+box-shadow:inset -35px -35px 80px #0009,0 -20px 70px #54d8ff66;border:1px solid #7ddcff99}
+.brand-planet span{position:absolute;top:20%;left:45%;font:700 clamp(50px,8vw,120px) Arial;color:#ffffff1c;letter-spacing:-.1em}
+.brand-orbit{position:absolute;width:min(70vw,950px);height:19vw;min-height:120px;right:-2%;bottom:5%;border:5px solid var(--brand-yellow);border-left-color:transparent;border-right-color:transparent;border-radius:50%;transform:rotate(-12deg);filter:drop-shadow(0 0 8px #ffe84b88)}
+.brand-hero-copy{position:relative;z-index:2;max-width:690px;padding-bottom:28px}
+.brand-kicker{font:600 10px "DM Mono",monospace;letter-spacing:.2em;color:#eaf8ff;display:flex;align-items:center;gap:12px}
+.brand-kicker span{width:34px;height:2px;background:var(--brand-yellow);box-shadow:0 0 12px var(--brand-yellow)}
+.brand-wordmark{display:inline-flex;flex-direction:column;line-height:.78;margin:32px 0 30px;filter:drop-shadow(0 12px 0 #07101e) drop-shadow(0 20px 20px #00102b88);transform:skew(-5deg)}
+.brand-wordmark span{font:900 clamp(58px,9vw,132px)/.82 Arial Black,Arial,sans-serif;letter-spacing:-.085em;color:#fff;-webkit-text-stroke:2px #07101b;text-shadow:2px 2px 0 #07101b,5px 5px 0 #07101b,8px 8px 0 #07101b,11px 11px 0 #07101b}
+.brand-wordmark small{align-self:flex-end;font:700 11px "DM Mono",monospace;letter-spacing:.62em;color:#fff;margin:13px 10px 0 0}
+.brand-hero h1{font:900 clamp(42px,5vw,72px)/.92 Arial,sans-serif;letter-spacing:-.055em;color:#fff;text-shadow:0 4px 0 #06172d,0 8px 22px #001b44aa;margin:0 0 20px}
+.brand-hero h1 em{font-style:italic;color:var(--brand-yellow);font-family:"Playfair Display",serif;text-shadow:0 3px 0 #624c00,0 8px 20px #001b44aa}
+.brand-hero-copy>p{color:#eaf5ff;font-size:15px;line-height:1.7}
+.brand-cta{display:inline-flex;gap:22px;align-items:center;background:var(--brand-yellow);color:#080d18;padding:16px 20px;font:800 10px "DM Mono",monospace;letter-spacing:.12em;text-decoration:none;margin-top:12px;box-shadow:0 5px 0 #927500,0 12px 25px #00132c55;transition:.2s}
+.brand-cta:hover{transform:translateY(-3px);box-shadow:0 8px 0 #927500,0 18px 30px #00132c66}
+.brand-cta b{font-size:18px}
+.brand-signature{margin-top:42px;color:#c6e8ff;font:700 10px "DM Mono",monospace;letter-spacing:.2em}
+.brand-signature span{color:var(--brand-yellow);font-size:17px;margin:0 8px}
+.brand-hero-photo{position:relative;z-index:2;justify-self:center;width:min(42vw,560px);height:min(60vh,650px);min-height:400px;transform:rotate(2deg);border:2px solid #ffffffaa;padding:10px;background:#06152b;box-shadow:18px 18px 0 var(--brand-yellow),0 30px 70px #00132c99}
+.brand-hero-photo:before{content:"";position:absolute;inset:-16px;border:1px solid #fff8;pointer-events:none}
+.brand-hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.brand-photo-caption{position:absolute;bottom:10px;left:10px;right:10px;background:#06152be8;padding:15px 18px;display:flex;flex-direction:column;gap:5px;color:white}
+.brand-photo-caption b{font:800 12px Arial;letter-spacing:.12em}.brand-photo-caption span{font:9px "DM Mono";letter-spacing:.18em;color:#b7ddff}
+.brand-hero .hero-side,.brand-hero .hero-bottom{color:#e5f5ff}
+.brand-hero .hero-side{right:20px}
+.brand-hero .hero-bottom{left:clamp(28px,6vw,100px);right:clamp(28px,6vw,100px)}
+.btn,.button{background:var(--brand-yellow)!important;color:#080d18!important;border:0!important}
+.marquee{background:#07172d!important;color:#fff!important;border-color:#ffffff33!important}
+.marquee i{color:var(--brand-yellow)!important}
+.section{background:#080d18!important;color:#fff!important}
+.section:nth-of-type(even){background:#0d1b31!important}
+.section h2,.section h3,.section p{color:inherit}
+.section .eyebrow,.section .line-link{color:#68caff!important}
+.section h2 i,.section h2 em{color:var(--brand-yellow)!important}
+.gallery figure{border:1px solid #3d83bd55}
+.contact-band{background:linear-gradient(120deg,#0879ed,#063c86)!important;color:white!important}
+.footer{background:#050912!important;color:#c5d9ee!important;border-top:2px solid var(--brand-yellow)}
+@media(max-width:850px){
+ .brand-hero{grid-template-columns:1fr;min-height:0;height:auto;padding:125px 24px 90px;gap:35px}
+ .brand-hero-photo{width:min(78vw,500px);height:480px;min-height:0;justify-self:start;margin-left:5%}
+ .brand-planet{width:100vw;right:-35%;bottom:-25%}
+ .brand-orbit{width:120vw;height:32vw;right:-20%;bottom:12%}
+ .brand-hero .hero-side{display:none}
+}
+@media(max-width:520px){
+ .brand-wordmark span{font-size:clamp(54px,16vw,82px)}
+ .brand-hero-photo{width:82vw;height:390px}
+ .brand-hero h1{font-size:46px}
+ .brand-signature{font-size:8px}
+}
 </style></head><body><header><a class="logo" href="/site.html" aria-label="Lesloy Visuals home"><span>LV</span><b>LESLOY</b><small>VISUALS</small></a><nav><a href="/work">WERK</a><a href="/about">OVER MIJ</a><a href="/services">DIENSTEN</a><a href="/duo">DUO</a><a href="/pricing">PRIJZEN</a><a href="/contact">CONTACT</a></nav><a class="insta" href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">IG ↗</a><button class="menu" aria-label="Menu" aria-expanded="false">☰</button></header><main>
-<section class="hero"><img src="images/hero.jpg" alt="Lesloy Visuals fotografie"><div class="hero-grad"></div><div class="hero-copy"><div class="tiny">LESLOY VISUALS / FOTOGRAFIE</div><h1>MAAK<br><i>HET VISUEEL.</i></h1><p>Creatieve fotografie door Lesley Samuels.<br>Voor mensen, verhalen, auto's & momenten.</p><p><a class="btn" href="/contact">START EEN OPDRACHT ↗</a></p></div><div class="hero-side">PORTRETTEN · AUTO'S · BRUILOFTEN · CREATIEF</div><div class="hero-bottom"><span>NL — 2026</span><span>SCROLL ↓</span></div></section>
+<section class="hero brand-hero">
+  <div class="brand-sky" aria-hidden="true"><div class="brand-cloud cloud-one"></div><div class="brand-cloud cloud-two"></div><div class="brand-planet"><span>LV</span></div><div class="brand-orbit"></div></div>
+  <div class="brand-hero-copy">
+    <div class="brand-kicker"><span></span> LESLEY SAMUELS / PHOTOGRAPHER</div>
+    <div class="brand-wordmark" aria-label="Lesloy Visuals"><span>LESLOY</span><small>VISUALS</small></div>
+    <h1>MAAK HET<br><em>VISUEEL.</em></h1>
+    <p>Creatieve fotografie door Lesley Samuels.<br>Voor mensen, verhalen, auto's & momenten.</p>
+    <a class="brand-cta" href="/contact">START EEN OPDRACHT <b>↗</b></a>
+    <div class="brand-signature">DREAM BIG <span>✦</span> CREATE VISUALS</div>
+  </div>
+  <div class="brand-hero-photo"><img src="images/hero.jpg" alt="Fotografie door Lesloy Visuals"><div class="brand-photo-caption"><b>LESLEY SAMUELS</b><span>PHOTOGRAPHY / LESLOY VISUALS</span></div></div>
+  <div class="hero-side">PORTRETTEN · AUTO'S · BRUILOFTEN · CREATIEF</div>
+  <div class="hero-bottom"><span>NL — 2026</span><span>SCROLL ↓</span></div>
+</section>
 <section class="marquee"><div class="marquee-track"><div class="marquee-item">PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i> PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i></div><div class="marquee-item">PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i> PHOTOGRAPHY <i>•</i> CREATIVE <i>•</i> VISUALS <i>•</i></div></div></section>
 <section class="section reveal"><div class="work-intro"><div><div class="eyebrow">01 / GESELECTEERD WERK</div><h2>ECHT WERK.<br><i>ECHTE VERHALEN.</i></h2></div><p>Een kleine selectie van mijn huidige werk. Nog klein in omvang, maar bewust gekozen. Nieuwe shoots worden hier steeds toegevoegd.</p></div><div class="gallery"><figure class="tall"><img src="images/portrait-01.jpg" alt="Portret door Lesloy Visuals"><figcaption>01 — PORTRAIT</figcaption></figure><figure><img src="images/city-01.jpg" alt="Automotive en city fotografie"><figcaption>02 — AUTOMOTIVE / CITY</figcaption></figure><figure><img src="images/portrait-02.jpg" alt="Portret door Lesloy Visuals"><figcaption>03 — PORTRAIT</figcaption></figure><figure class="wide"><img src="images/portrait-03.jpg" alt="Golden hour fotografie"><figcaption>04 — GOLDEN HOUR</figcaption></figure></div><p style="margin:35px 0 0"><a class="line-link" href="/work">BEKIJK AL HET WERK ↗</a></p></section>
 <section class="section reveal"><div class="split"><div class="split-img"><img src="images/lesley.jpg" alt="Lesley Samuels — Lesloy Visuals"></div><div class="split-copy"><div class="eyebrow">02 / DE PERSOON ACHTER DE CAMERA</div><h2>HI, IK BEN<br><i>LESLEY.</i></h2><p>Ik hou ervan om gewone momenten op een andere manier te bekijken en er een beeld van te maken dat karakter heeft.</p><p>Van een bruiloft tot een auto, van een portret tot een compleet idee: ik denk creatief met je mee en vertaal het naar beeld.</p><a class="line-link" href="/about">MEER OVER MIJ ↗</a></div></div></section>
