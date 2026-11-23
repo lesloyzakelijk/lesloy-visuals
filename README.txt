@@ -1,10 +1,23 @@
-LESLOY VISUALS — THE DIGITAL EXPERIENCE
+LESLOY VISUALS — THE DIGITAL EXPERIENCE (V2)
 
-Upload de volledige inhoud van deze map naar de root van je GitHub/Vercel-project. Upload dus index.html, style.css, script.js, vercel.json, de overige HTML-bestanden en de map images.
+Dit is de nieuwe Colorful Surreal websiteversie. De homepage gebruikt de goedgekeurde Lesloy Universe-compositie als openingsbeeld. De tekst en navigatie in dat beeld worden op desktop bediend met onzichtbare, echte klikvlakken; op mobiel is er een apart menu en een duidelijke Explore-knop.
 
-Belangrijk:
-- De contact- en reviewformulieren gebruiken FormSubmit en sturen naar lesloyzakelijk@gmail.com. Bij eerste gebruik kan FormSubmit een activatie-e-mail sturen.
-- De homepage gebruikt de nieuwe LESLOY-universe visual als hero-art.
-- Portfoliofoto’s zijn bestaande lokale beelden uit de vorige website; voeg later gerust extra originele foto's toe.
-- De 3D-sfeer is opgebouwd uit de hero-art, parallaxachtige beweging, canvas-deeltjes en interactieve details. Dit is geen volledige realtime 3D-avatar; daarvoor is later een afzonderlijk 3D-model van Lesley nodig.
-- Test de formulieren na deployment.
+INHOUD
+- Homepage met goedgekeurde LESLOY VISUALS hero-artwork, navigatie-hotspots en portfolio-sectie
+- Portfolio, Diensten, Duo, Over mij, Prijzen, Reviews en Contact
+- Werkende contact- en reviewformulieren via FormSubmit (eerste gebruik kan e-mailverificatie door FormSubmit vereisen)
+- Interactieve Three.js-omgeving op de services-wereld wanneer WebGL en CDN beschikbaar zijn; zonder die onderdelen blijven de CSS-visuals zichtbaar
+- Responsieve mobiele navigatie, hoverdiepte, lightbox, formulieren en reduced-motion ondersteuning
+- Vercel clean URL-configuratie, robots.txt en sitemap.xml
+
+UPLOADEN NAAR GITHUB / VERCEL
+1. Pak deze ZIP uit.
+2. Open de uitgepakte map. Selecteer ALLE bestanden en de map images binnen die map.
+3. Upload de inhoud naar de hoofdmap (root) van het GitHub-project. Upload dus niet de bovenliggende map en niet alleen het ZIP-bestand.
+4. Commit de wijzigingen. Vercel start daarna automatisch een deployment.
+5. Controleer eerst de Vercel-preview voordat je de productieomgeving gebruikt.
+
+LET OP
+- Behoud de map images en vercel.json in de root.
+- De Three.js-scene wordt van cdnjs geladen. Als een bezoeker de CDN niet kan bereiken, blijft de rest van de website werken.
+- De homepage-compositie is een geoptimaliseerd WebP-bestand. De originele PNG is ook opgenomen als bronbestand.
