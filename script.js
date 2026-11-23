@@ -55,3 +55,15 @@ document.addEventListener("DOMContentLoaded",()=> {
     });
   });
 })();
+
+// 3D depth interaction for the hero objects and photo card
+document.addEventListener('DOMContentLoaded',()=>{
+ const hero=document.querySelector('.brand-hero'),card=document.querySelector('.brand-hero-photo'),lens=document.querySelector('.floating-lens');
+ if(!hero||!card||!lens||!matchMedia('(pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ hero.addEventListener('pointermove',e=>{
+  const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  card.style.transform=`perspective(1100px) rotateY(${x*9+2}deg) rotateX(${-y*7}deg) translateZ(18px)`;
+  lens.style.marginLeft=`${x*-22}px`;lens.style.marginTop=`${y*-18}px`;
+ });
+ hero.addEventListener('pointerleave',()=>{card.style.transform='';lens.style.marginLeft='';lens.style.marginTop=''});
+});

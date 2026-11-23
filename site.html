@@ -111,9 +111,34 @@ box-shadow:inset -35px -35px 80px #0009,0 -20px 70px #54d8ff66;border:1px solid 
  .brand-hero h1{font-size:46px}
  .brand-signature{font-size:8px}
 }
+</style><style>
+/* V9 — tangible 3D objects and interaction */
+.brand-sky{perspective:1200px}
+.floating-lens{position:absolute;z-index:1;left:43%;top:17%;width:clamp(170px,22vw,310px);aspect-ratio:1;transform-style:preserve-3d;transform:rotateX(17deg) rotateY(-24deg) rotateZ(-12deg);animation:lensFloat 7s ease-in-out infinite;filter:drop-shadow(22px 35px 28px #00102c88)}
+.lens-rim{position:absolute;inset:0;border-radius:50%;padding:13px;background:linear-gradient(135deg,#f8fbff,#536b8b 13%,#071426 25%,#9db8d1 33%,#172b48 43%,#020712 70%,#7e9bbd 85%,#fff);box-shadow:inset 0 0 0 3px #fff9,inset 0 0 0 9px #09182b,0 0 0 2px #f5d313,0 24px 35px #00102c99;transform:translateZ(20px)}
+.lens-glass{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 32% 25%,#8ee6ff 0 2%,transparent 13%),radial-gradient(circle at 50% 50%,#07162d 0 24%,#0a3e72 25%,#07152b 50%,#030812 70%);box-shadow:inset 0 0 35px #000,inset 0 0 0 2px #9bdfff88}
+.lens-glass:before,.lens-glass:after{content:"";position:absolute;inset:9%;border:2px solid #91b6d5aa;border-radius:50%;box-shadow:0 0 0 5px #07111f,0 0 0 7px #d9edff77}
+.lens-glass:after{inset:18%;border-color:#f5d313aa;box-shadow:0 0 22px #0879edaa}
+.lens-iris{position:absolute;inset:24%;border-radius:50%;background:repeating-conic-gradient(from 9deg,#07101e 0deg 26deg,#123d69 27deg 44deg,#07101e 45deg 60deg);clip-path:polygon(50% 0,68% 10%,88% 22%,100% 50%,88% 78%,68% 90%,50% 100%,32% 90%,12% 78%,0 50%,12% 22%,32% 10%);filter:drop-shadow(0 0 9px #28baff88);animation:irisTurn 18s linear infinite}
+.lens-glass span{position:absolute;inset:0;display:grid;place-items:center;color:#e9f7ff;font:900 clamp(20px,3vw,38px) Arial;letter-spacing:-.1em;text-shadow:0 2px 8px #000}
+.lens-glint{position:absolute;left:22%;top:12%;width:35%;height:10%;border-radius:50%;background:#fff9;filter:blur(9px);transform:translateZ(38px) rotate(-35deg)}
+.float-cube{position:absolute;z-index:1;right:12%;top:13%;width:76px;height:76px;display:grid;place-items:center;color:#07152c;font:900 22px Arial;transform-style:preserve-3d;transform:rotateX(-28deg) rotateY(38deg);animation:cubeDrift 9s ease-in-out infinite}
+.float-cube:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#fff,#b8dfff 45%,#0879ed);border:2px solid #fff;box-shadow:12px 12px 0 #f5d313,0 22px 30px #00102c77;transform:translateZ(22px)}
+.float-cube:after{content:"";position:absolute;inset:0;background:#0753a9;border:2px solid #9bdfff;transform:rotateY(90deg) translateZ(22px);transform-origin:right}
+.float-cube b{z-index:2;transform:translateZ(27px);font-size:19px}
+.brand-hero-photo{transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
+.brand-hero-photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,#fff4,transparent 28%,transparent 70%,#0879ed22);transform:translateZ(2px)}
+.brand-hero-copy{transform-style:preserve-3d}
+.brand-wordmark{transform:translateZ(35px) skew(-5deg);text-shadow:0 2px 0 #07101b,0 5px 0 #07101b,0 8px 0 #07101b,0 11px 0 #07101b,0 18px 24px #00102c88}
+.brand-cta{transform:translateZ(18px)}
+@keyframes lensFloat{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -22px;rotate:5deg}}
+@keyframes irisTurn{to{transform:rotate(360deg)}}
+@keyframes cubeDrift{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -18px;rotate:12deg}}
+@media(max-width:850px){.floating-lens{left:auto;right:3%;top:38%;width:clamp(130px,36vw,220px);opacity:.9}.float-cube{right:8%;top:27%;width:48px;height:48px}.float-cube:before{box-shadow:8px 8px 0 #f5d313,0 14px 22px #00102c77}.float-cube:after{transform:rotateY(90deg) translateZ(14px)}.float-cube b{transform:translateZ(18px);font-size:13px}}
+@media(prefers-reduced-motion:reduce){.floating-lens,.lens-iris,.float-cube{animation:none}}
 </style></head><body><header><a class="logo" href="/site.html" aria-label="Lesloy Visuals home"><span>LV</span><b>LESLOY</b><small>VISUALS</small></a><nav><a href="/work">WERK</a><a href="/about">OVER MIJ</a><a href="/services">DIENSTEN</a><a href="/duo">DUO</a><a href="/pricing">PRIJZEN</a><a href="/contact">CONTACT</a></nav><a class="insta" href="https://www.instagram.com/lesley.0492/" target="_blank" rel="noopener">IG ↗</a><button class="menu" aria-label="Menu" aria-expanded="false">☰</button></header><main>
 <section class="hero brand-hero">
-  <div class="brand-sky" aria-hidden="true"><div class="brand-cloud cloud-one"></div><div class="brand-cloud cloud-two"></div><div class="brand-planet"><span>LV</span></div><div class="brand-orbit"></div></div>
+  <div class="brand-sky" aria-hidden="true"><div class="brand-cloud cloud-one"></div><div class="brand-cloud cloud-two"></div><div class="brand-planet"><span>LV</span></div><div class="brand-orbit"></div><div class="floating-lens" aria-hidden="true"><div class="lens-rim"><div class="lens-glass"><div class="lens-iris"></div><span>LV</span></div></div><i class="lens-glint"></i></div><div class="float-cube" aria-hidden="true"><b>LV</b></div></div>
   <div class="brand-hero-copy">
     <div class="brand-kicker"><span></span> LESLEY SAMUELS / PHOTOGRAPHER</div>
     <div class="brand-wordmark" aria-label="Lesloy Visuals"><span>LESLOY</span><small>VISUALS</small></div>
