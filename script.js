@@ -1,181 +1,56 @@
 document.documentElement.classList.add('js-motion');
 document.addEventListener('DOMContentLoaded',()=>{
-  const menu=document.querySelector('.menu-toggle');
-  const nav=document.querySelector('.nav');
-  if(menu&&nav){menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.setAttribute('aria-expanded',nav.classList.contains('open')?'true':'false')})}
-
-  const posterMenu=document.querySelector('.poster-menu');
-  const posterMenuButtons=[document.querySelector('.menu-hotspot'),document.querySelector('.mobile-menu-button')].filter(Boolean);
-  posterMenuButtons.forEach(button=>button.addEventListener('click',()=>{
-    if(!posterMenu)return;
-    const open=posterMenu.classList.toggle('open');
-    posterMenuButtons.forEach(b=>b.setAttribute('aria-expanded',open?'true':'false'));
-  }));
-  document.addEventListener('click',event=>{
-    if(!posterMenu||!posterMenu.classList.contains('open'))return;
-    if(posterMenu.contains(event.target)||posterMenuButtons.some(b=>b.contains(event.target)))return;
-    posterMenu.classList.remove('open');posterMenuButtons.forEach(b=>b.setAttribute('aria-expanded','false'));
-  });
-
+  const menu=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav');
+  if(menu&&nav)menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.setAttribute('aria-expanded',nav.classList.contains('open')?'true':'false')});
+  const liveMenuButton=document.querySelector('.live-menu-toggle');const liveMobileMenu=document.querySelector('.live-mobile-nav');
+  if(liveMenuButton&&liveMobileMenu){liveMenuButton.addEventListener('click',()=>{const open=liveMobileMenu.classList.toggle('open');liveMenuButton.setAttribute('aria-expanded',open?'true':'false')});document.addEventListener('click',e=>{if(!liveMobileMenu.contains(e.target)&&!liveMenuButton.contains(e.target)){liveMobileMenu.classList.remove('open');liveMenuButton.setAttribute('aria-expanded','false')}})}
   const revealElements=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}
-    }),{threshold:.12});
-    revealElements.forEach(element=>obs.observe(element));
-  }else{
-    revealElements.forEach(element=>element.classList.add('visible'));
-  }
-
-  const glow=document.querySelector('.cursor-glow');
-  if(glow&&matchMedia('(pointer:fine)').matches){window.addEventListener('pointermove',event=>{
-    glow.style.left=event.clientX+'px';glow.style.top=event.clientY+'px';
-  },{passive:true});}
-
-  // Animated ambient particles over the approved hero artwork.
-  const heroCanvas=document.querySelector('.hero-particles');
-  if(heroCanvas&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    const ctx=heroCanvas.getContext('2d');
-    if(ctx){
-      let w=1,h=1,dpr=1,raf=0,heroVisible=true;
-      const pointer={x:.5,y:.5};
-      const particles=Array.from({length:matchMedia('(max-width: 700px)').matches?36:72},(_,i)=>({
-        x:Math.random(),y:Math.random(),r:.45+Math.random()*1.65,
-        speed:.00012+Math.random()*.00034,phase:Math.random()*Math.PI*2,
-        hue:[43,195,285,320][i%4],alpha:.2+Math.random()*.55,
-        drift:(Math.random()-.5)*.00022
-      }));
-      const resize=()=>{
-        const rect=heroCanvas.getBoundingClientRect();
-        w=Math.max(1,rect.width);h=Math.max(1,rect.height);dpr=Math.min(devicePixelRatio||1,1.5);
-        heroCanvas.width=Math.round(w*dpr);heroCanvas.height=Math.round(h*dpr);
-        ctx.setTransform(dpr,0,0,dpr,0,0);
-      };
-      resize();window.addEventListener('resize',resize,{passive:true});
-      heroCanvas.parentElement.addEventListener('pointermove',e=>{
-        const r=heroCanvas.parentElement.getBoundingClientRect();
-        pointer.x=(e.clientX-r.left)/r.width;pointer.y=(e.clientY-r.top)/r.height;
-      },{passive:true});
-      const io=new IntersectionObserver(entries=>{
-        heroVisible=entries[0].isIntersecting;
-        if(heroVisible&&!raf)draw();
-      },{threshold:0});io.observe(heroCanvas);
-      document.addEventListener('visibilitychange',()=>{
-        if(document.hidden){cancelAnimationFrame(raf);raf=0}else if(heroVisible&&!raf)draw();
-      });
-      let last=0;
-      function draw(now=0){
-        if(!heroVisible||document.hidden){raf=0;return}
-        raf=requestAnimationFrame(draw);
-        const dt=Math.min(40,now-last||16);last=now;
-        ctx.clearRect(0,0,w,h);
-        particles.forEach(p=>{
-          p.y-=p.speed*dt;p.x+=p.drift*dt;
-          if(p.y<-.025){p.y=1.025;p.x=Math.random()}
-          if(p.x<-.02)p.x=1.02;if(p.x>1.02)p.x=-.02;
-          const twinkle=.45+.55*Math.sin(now*.0013+p.phase);
-          const x=p.x*w+(pointer.x-.5)*p.r*4;
-          const y=p.y*h+(pointer.y-.5)*p.r*3;
-          const radius=p.r*(.75+twinkle*.5);
-          ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);
-          ctx.fillStyle=`hsla(${p.hue},100%,83%,${p.alpha*twinkle})`;ctx.shadowBlur=radius*8;
-          ctx.shadowColor=`hsla(${p.hue},100%,75%,.8)`;ctx.fill();ctx.shadowBlur=0;
-        });
-      }
-      draw();
-    }
-  }
-
-  // Subtle pointer parallax on the approved hero artwork. The composition itself stays intact.
-  const poster=document.querySelector('.poster-stage');
-  const posterImage=document.querySelector('.poster-image');
-  if(poster&&posterImage&&matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    poster.addEventListener('pointermove',event=>{
-      const rect=poster.getBoundingClientRect();
-      const x=(event.clientX-rect.left)/rect.width-.5;
-      const y=(event.clientY-rect.top)/rect.height-.5;
-      posterImage.style.transform=`scale(1.025) translate3d(${x*-13}px,${y*-10}px,0)`;
-    });
-    poster.addEventListener('pointerleave',()=>{posterImage.style.transform='scale(1.008)'});
-  }
-
-  document.querySelectorAll('.gallery-grid img').forEach(img=>img.addEventListener('click',()=>{
-    const box=document.querySelector('.lightbox');if(box){box.querySelector('img').src=img.src;box.classList.add('open')}
-  }));
-  const lightbox=document.querySelector('.lightbox');
-  if(lightbox){lightbox.addEventListener('click',event=>{if(event.target===lightbox||event.target.tagName==='BUTTON')lightbox.classList.remove('open')})}
-
-  const params=new URLSearchParams(location.search);
-  if(params.get('service')){
-    const select=document.querySelector('[name="type_shoot"]');
-    if(select){const map={'portrait-mini':'Portret','portrait-standard':'Portret','portrait-premium':'Portret','automotive-basic':'Automotive','automotive-premium':'Automotive','extra-car':'Automotive','event-2h':'Event','event-4h':'Event','event-8h':'Event','custom':'Creatief / anders','wedding':'Bruiloft'};select.value=map[params.get('service')]||'';}
-  }
-  if(params.get('type')==='duo'){const select=document.querySelector('[name="type_shoot"]');if(select)select.value='Lesloy Visuals × Smit Works — duo'}
-  if(params.get('sent')==='1'){const note=document.createElement('p');note.className='form-success';note.textContent='Bedankt! Je bericht is verzonden. Ik kom er zo snel mogelijk op terug.';const form=document.querySelector('form');if(form)form.before(note)}
-
-  // Immersive Three.js environment: a ringed planet, floating sculptures and portals.
-  // The approved homepage artwork remains untouched; this scene lives in the next world.
-  const worldCanvas=document.getElementById('world-3d');
-  if(worldCanvas&&window.THREE&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    try{
-      const THREE=window.THREE;
-      const scene=new THREE.Scene();
-      const camera=new THREE.PerspectiveCamera(42,1,.1,100);
-      camera.position.set(0,.1,9.2);
-      const renderer=new THREE.WebGLRenderer({canvas:worldCanvas,alpha:true,antialias:true,powerPreference:'low-power'});
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.6));
-      renderer.setClearColor(0x000000,0);
-      renderer.outputColorSpace=THREE.SRGBColorSpace;
-      const ambient=new THREE.AmbientLight(0x9e9bff,1.6);scene.add(ambient);
-      const key=new THREE.PointLight(0xff72ce,95,22);key.position.set(-3,3,5);scene.add(key);
-      const goldLight=new THREE.PointLight(0xffc36a,75,20);goldLight.position.set(4,-2,3);scene.add(goldLight);
-      const planetGroup=new THREE.Group();scene.add(planetGroup);
-      const planet=new THREE.Mesh(new THREE.SphereGeometry(1.27,64,48),new THREE.MeshPhysicalMaterial({color:0x4657d7,metalness:.28,roughness:.34,clearcoat:.85,clearcoatRoughness:.2,emissive:0x17125b,emissiveIntensity:.45}));
-      planetGroup.add(planet);
-      const planetGlow=new THREE.Mesh(new THREE.SphereGeometry(1.31,48,32),new THREE.MeshBasicMaterial({color:0x8d7aff,transparent:true,opacity:.09,side:THREE.BackSide}));planetGroup.add(planetGlow);
-      const ring=new THREE.Mesh(new THREE.TorusGeometry(1.9,.035,16,180),new THREE.MeshStandardMaterial({color:0xffdb68,metalness:.68,roughness:.22,emissive:0xffa73f,emissiveIntensity:.5}));ring.rotation.x=1.22;ring.rotation.y=-.18;planetGroup.add(ring);
-      const ring2=new THREE.Mesh(new THREE.TorusGeometry(2.13,.012,8,180),new THREE.MeshBasicMaterial({color:0xff7fcf,transparent:true,opacity:.8}));ring2.rotation.copy(ring.rotation);planetGroup.add(ring2);
-      const shapes=[];
-      const palette=[0xff5dc8,0x8c6aff,0xffa15b,0x71a4ff,0xffdf64];
-      for(let i=0;i<12;i++){
-        const geometry=i%3===0?new THREE.TorusKnotGeometry(.26,.075,72,10,2,3):i%3===1?new THREE.IcosahedronGeometry(.28,1):new THREE.OctahedronGeometry(.3,1);
-        const material=new THREE.MeshPhysicalMaterial({color:palette[i%palette.length],metalness:.42,roughness:.24,clearcoat:1,clearcoatRoughness:.16,emissive:palette[i%palette.length],emissiveIntensity:.1});
-        const mesh=new THREE.Mesh(geometry,material);
-        const angle=i/12*Math.PI*2;const radius=2.9+(i%3)*.42;
-        mesh.position.set(Math.cos(angle)*radius,Math.sin(angle*1.5)*1.35,Math.sin(angle)*1.25);
-        const s=.55+(i%4)*.18;mesh.scale.setScalar(s);mesh.userData={seed:i,baseY:mesh.position.y};
-        scene.add(mesh);shapes.push(mesh);
-      }
-      // Two elliptical portal loops in the far field.
-      for(let i=0;i<3;i++){
-        const portal=new THREE.Mesh(new THREE.TorusGeometry(1.15+i*.22,.018,10,120),new THREE.MeshBasicMaterial({color:palette[i],transparent:true,opacity:.56}));
-        portal.position.set((i-1)*2.5,.1,-2.2-i*.35);portal.rotation.set(.3+i*.2,.5+i*.35,.25);portal.scale.y=1.45;portal.userData={baseY:portal.position.y,seed:i+12};scene.add(portal);shapes.push(portal);
-      }
-      const count=480;const positions=new Float32Array(count*3);const colors=new Float32Array(count*3);
-      const cA=new THREE.Color(0xff9ddf),cB=new THREE.Color(0x8b9fff),cC=new THREE.Color(0xffda75);
-      for(let i=0;i<count;i++){
-        positions[i*3]=(Math.random()-.5)*15;positions[i*3+1]=(Math.random()-.5)*8;positions[i*3+2]=(Math.random()-.5)*8-1;
-        const c=[cA,cB,cC][i%3];colors[i*3]=c.r;colors[i*3+1]=c.g;colors[i*3+2]=c.b;
-      }
-      const particlesGeometry=new THREE.BufferGeometry();particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));particlesGeometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
-      const particles=new THREE.Points(particlesGeometry,new THREE.PointsMaterial({size:.035,vertexColors:true,transparent:true,opacity:.78,sizeAttenuation:true}));scene.add(particles);
-      let width=1,height=1,raf=0,visible=true,mouseX=0,mouseY=0;
-      const resize=()=>{const rect=worldCanvas.parentElement.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);renderer.setSize(width,height,false);camera.aspect=width/height;camera.position.z=width<600?11:9.2;camera.updateProjectionMatrix()};
-      resize();window.addEventListener('resize',resize,{passive:true});
-      window.addEventListener('pointermove',e=>{mouseX=(e.clientX/window.innerWidth-.5)*.6;mouseY=(e.clientY/window.innerHeight-.5)*.32},{passive:true});
-      const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&!raf)animate()},{threshold:.02});observer.observe(worldCanvas);
-      const clock=new THREE.Clock();
-      function animate(){if(!visible){raf=0;return}raf=requestAnimationFrame(animate);const t=clock.getElapsedTime();planetGroup.rotation.y=t*.12;planetGroup.rotation.x=Math.sin(t*.16)*.08;planetGroup.position.y=Math.sin(t*.55)*.12;shapes.forEach(m=>{m.rotation.x+=.0018*(1+(m.userData.seed||1)%3);m.rotation.y+=.0024;m.position.y=(m.userData.baseY||m.position.y)+Math.sin(t*.8+(m.userData.seed||0))*0.1});particles.rotation.y=t*.012;camera.position.x+=(mouseX-camera.position.x)*.018;camera.position.y+=(-mouseY-camera.position.y)*.018;camera.lookAt(0,0,0);renderer.render(scene,camera)}
-      animate();
-    }catch(error){console.warn('3D scene fallback active:',error)}
-  }
-
-  // Gentle depth tilt on portfolio tiles; disabled on touch screens and reduced-motion setups.
-  if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.querySelectorAll('.universe-photo,.work-card,.info-card,.price-card').forEach(card=>{
-      card.addEventListener('pointermove',event=>{const r=card.getBoundingClientRect();const x=(event.clientX-r.left)/r.width-.5;const y=(event.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateX(${y*-3}deg) rotateY(${x*3}deg) translateY(-4px)`});
-      card.addEventListener('pointerleave',()=>{card.style.transform=''});
-    });
-  }
-
+  if('IntersectionObserver'in window){const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}}),{threshold:.12});revealElements.forEach(el=>obs.observe(el))}else revealElements.forEach(el=>el.classList.add('visible'));
+  const glow=document.querySelector('.cursor-glow');if(glow&&matchMedia('(pointer:fine)').matches)window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});
+  const hero=document.querySelector('.live-hero');const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const fine=matchMedia('(pointer:fine)').matches;
+  if(hero&&!reduced){let rect=hero.getBoundingClientRect();let mx=0,my=0;hero.addEventListener('pointermove',e=>{rect=hero.getBoundingClientRect();mx=(e.clientX-rect.left)/rect.width-.5;my=(e.clientY-rect.top)/rect.height-.5;hero.style.setProperty('--mx-char',(mx*18).toFixed(2)+'px');hero.style.setProperty('--my-char',(my*13).toFixed(2)+'px');hero.style.setProperty('--mx-logo',(mx*7).toFixed(2)+'px');hero.style.setProperty('--my-logo',(my*5).toFixed(2)+'px');hero.style.setProperty('--mx-far',(mx*-22).toFixed(2)+'px');hero.style.setProperty('--my-far',(my*-14).toFixed(2)+'px');hero.style.setProperty('--mx-camera',(mx*-25).toFixed(2)+'px');hero.style.setProperty('--my-camera',(my*-15).toFixed(2)+'px');hero.style.setProperty('--mx-left',(mx*-14).toFixed(2)+'px');hero.style.setProperty('--my-left',(my*-10).toFixed(2)+'px');hero.style.setProperty('--mx-right',(mx*17).toFixed(2)+'px');hero.style.setProperty('--my-right',(my*-9).toFixed(2)+'px');hero.style.setProperty('--tilt',(mx*5).toFixed(2)+'deg');hero.dataset.moving='1'},{passive:true});hero.addEventListener('pointerleave',()=>{hero.style.setProperty('--mx','0px');hero.style.setProperty('--my','0px');hero.style.setProperty('--tilt','0');hero.dataset.moving='0'});window.addEventListener('scroll',()=>{const r=hero.getBoundingClientRect();const shift=Math.max(-60,Math.min(40,r.top*.12));hero.style.setProperty('--scroll-shift',shift.toFixed(1)+'px')},{passive:true})}
+  // 3D hero world: rotating planet + rings, floating islands, arches, photo planes, camera and particles.
+  const canvas=document.getElementById('hero-world');
+  if(canvas&&window.THREE&&!reduced){try{
+    const T=window.THREE,scene=new T.Scene();
+    const camera=new T.PerspectiveCamera(44,1,.1,100);camera.position.set(0,.15,13);
+    const renderer=new T.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.65));renderer.setClearColor(0x080b2a,0);renderer.outputColorSpace=T.SRGBColorSpace;
+    scene.add(new T.AmbientLight(0x9a9aff,1.75));const pinkLight=new T.PointLight(0xff5acb,70,24);pinkLight.position.set(-5,3,4);scene.add(pinkLight);const goldLight=new T.PointLight(0xffa45f,65,25);goldLight.position.set(5,-2,3);scene.add(goldLight);const blueLight=new T.PointLight(0x5f9cff,55,20);blueLight.position.set(2,5,-4);scene.add(blueLight);
+    const palette=[0xff62ce,0x9876ff,0xff9b58,0x64a8ff,0xffdf72];
+    // Create a procedural, softly mottled planet texture.
+    const texCanvas=document.createElement('canvas');texCanvas.width=1024;texCanvas.height=512;const c=texCanvas.getContext('2d');const grad=c.createLinearGradient(0,0,1024,512);grad.addColorStop(0,'#17468c');grad.addColorStop(.45,'#397fe2');grad.addColorStop(1,'#171b68');c.fillStyle=grad;c.fillRect(0,0,1024,512);
+    for(let i=0;i<65;i++){const x=Math.random()*1024,y=Math.random()*512,rx=8+Math.random()*55,ry=5+Math.random()*23;c.beginPath();c.ellipse(x,y,rx,ry,Math.random()*2,0,Math.PI*2);c.fillStyle=i%3?'rgba(105,193,255,.32)':'rgba(11,36,92,.36)';c.fill()}
+    const planetTexture=new T.CanvasTexture(texCanvas);planetTexture.colorSpace=T.SRGBColorSpace;
+    const planetGroup=new T.Group();planetGroup.position.set(3.9,2.1,-3.7);planetGroup.scale.setScalar(1.02);scene.add(planetGroup);
+    const planet=new T.Mesh(new T.SphereGeometry(1.48,64,48),new T.MeshPhysicalMaterial({map:planetTexture,metalness:.25,roughness:.38,clearcoat:1,emissive:0x13255f,emissiveIntensity:.22}));planetGroup.add(planet);
+    const atmosphere=new T.Mesh(new T.SphereGeometry(1.55,48,36),new T.MeshBasicMaterial({color:0x60aaff,transparent:true,opacity:.12,side:T.BackSide}));planetGroup.add(atmosphere);
+    const ring=new T.Mesh(new T.TorusGeometry(2.08,.045,16,180),new T.MeshStandardMaterial({color:0xffd86b,metalness:.55,roughness:.22,emissive:0xff9a33,emissiveIntensity:.55}));ring.rotation.set(1.13,.13,-.18);planetGroup.add(ring);
+    const ring2=new T.Mesh(new T.TorusGeometry(2.2,.014,8,180),new T.MeshBasicMaterial({color:0xff83d5,transparent:true,opacity:.68}));ring2.rotation.copy(ring.rotation);planetGroup.add(ring2);
+    // Floating islands with rock cores, grassy caps and waterfall particle streaks.
+    const floaters=[];
+    function makeIsland(x,y,z,scale,seed){const g=new T.Group();g.position.set(x,y,z);g.scale.setScalar(scale);scene.add(g);const rock=new T.Mesh(new T.DodecahedronGeometry(1,1),new T.MeshStandardMaterial({color:0x33365f,metalness:.18,roughness:.85,flatShading:true}));rock.scale.set(1.5,.62,1.05);g.add(rock);const top=new T.Mesh(new T.CylinderGeometry(.95,1.18,.19,9,1),new T.MeshStandardMaterial({color:0x324d54,roughness:.92}));top.position.y=.44;g.add(top);const grass=new T.Mesh(new T.CylinderGeometry(.84,.95,.12,9),new T.MeshStandardMaterial({color:seed%2?0x426d66:0x5c6c69,roughness:1}));grass.position.y=.57;g.add(grass);for(let i=0;i<5;i++){const drop=new T.Mesh(new T.BoxGeometry(.018,.3+Math.random()*.42,.018),new T.MeshBasicMaterial({color:i%2?0x63cfff:0xba8cff,transparent:true,opacity:.6}));drop.position.set((Math.random()-.5)*1.4,-.35-Math.random()*.25,(Math.random()-.5)*.7);g.add(drop)}g.userData={baseY:y,seed};floaters.push(g);return g}
+    makeIsland(-6,1.1,-2.7,.84,1);makeIsland(6.1,.25,-3.8,.72,2);makeIsland(5.4,3.2,-5.3,.46,3);
+    // Ancient arches built as actual 3D tube curves and stone columns.
+    function makeArch(x,y,z,s){const group=new T.Group();group.position.set(x,y,z);group.scale.setScalar(s);scene.add(group);const pts=[];for(let i=0;i<=40;i++){const a=Math.PI-i/40*Math.PI;pts.push(new T.Vector3(Math.cos(a)*1.05,Math.sin(a)*1.05+.05,0))}const curve=new T.CatmullRomCurve3(pts);const arch=new T.Mesh(new T.TubeGeometry(curve,64,.13,12,false),new T.MeshStandardMaterial({color:0x77729f,metalness:.22,roughness:.78}));group.add(arch);for(const xx of [-1.05,1.05]){const col=new T.Mesh(new T.CylinderGeometry(.14,.18,1.15,12),new T.MeshStandardMaterial({color:0x645c8c,roughness:.8}));col.position.set(xx,-.53,0);group.add(col)}floaters.push(group);group.userData={baseY:y,seed:9};return group}
+    makeArch(-5.4,-.75,-2.6,.88);makeArch(5.5,-1.0,-2.8,.78);
+    // Floating photo canvases from real portfolio files.
+    const frameGroups=[];const loader=new T.TextureLoader();
+    function makeFrame(src,x,y,z,rot){const g=new T.Group();g.position.set(x,y,z);g.rotation.set(.07,rot,.04);scene.add(g);const border=new T.Mesh(new T.BoxGeometry(1.72,1.2,.08),new T.MeshStandardMaterial({color:0x303459,metalness:.62,roughness:.22}));g.add(border);const plane=new T.Mesh(new T.PlaneGeometry(1.54,1.02),new T.MeshBasicMaterial({color:0x9b86d8}));plane.position.z=.047;g.add(plane);loader.load(src,t=>{t.colorSpace=T.SRGBColorSpace;plane.material.map=t;plane.material.color.set(0xffffff);plane.material.needsUpdate=true});g.userData={baseY:y,seed:frameGroups.length+4,spin:rot};frameGroups.push(g)}
+    makeFrame('/images/city-01.jpg',-4.35,.9,-1.3,.28);makeFrame('/images/portrait-03.jpg',4.35,-.1,-1.5,-.35);makeFrame('/images/portrait-01.jpg',-3.9,-1.5,-2.2,.18);
+    // Floating metallic sculptural objects, plus a 3D camera body and lens.
+    const sculptures=[];for(let i=0;i<10;i++){const geom=i%3===0?new T.TorusKnotGeometry(.22,.06,56,8):i%3===1?new T.IcosahedronGeometry(.28,1):new T.OctahedronGeometry(.3,1);const m=new T.Mesh(geom,new T.MeshPhysicalMaterial({color:palette[i%palette.length],metalness:.65,roughness:.22,clearcoat:1,emissive:palette[i%palette.length],emissiveIntensity:.12}));const a=i/10*Math.PI*2,r=5.2+(i%2)*.5;m.position.set(Math.cos(a)*r,Math.sin(a*1.4)*2.3,-1.5+Math.sin(a)*1.1);m.scale.setScalar(.6+(i%3)*.18);m.userData={seed:i,baseY:m.position.y};scene.add(m);sculptures.push(m)}
+    const camGroup=new T.Group();camGroup.position.set(4.8,.55,.8);camGroup.scale.setScalar(.58);scene.add(camGroup);const body=new T.Mesh(new T.BoxGeometry(1.85,1.16,.7),new T.MeshPhysicalMaterial({color:0x171f3f,metalness:.68,roughness:.26,clearcoat:1}));camGroup.add(body);const topBox=new T.Mesh(new T.BoxGeometry(.8,.18,.62),new T.MeshStandardMaterial({color:0x46527a,metalness:.65,roughness:.25}));topBox.position.set(-.18,.65,0);camGroup.add(topBox);const lens=new T.Group();lens.position.set(.22,0,.52);camGroup.add(lens);for(let i=0;i<4;i++){const cyl=new T.Mesh(new T.CylinderGeometry(.51-i*.035,.51-i*.035,.17,48),new T.MeshStandardMaterial({color:[0x69769c,0x17213e,0x52668f,0x070c20][i],metalness:.85,roughness:.18}));cyl.rotation.x=Math.PI/2;cyl.position.z=i*.12;lens.add(cyl)}const glass=new T.Mesh(new T.CircleGeometry(.365,48),new T.MeshPhysicalMaterial({color:0x285a98,metalness:.45,roughness:.08,clearcoat:1,emissive:0x0c3269,emissiveIntensity:.55}));glass.position.z=.52;lens.add(glass);
+    // A star field with subtle color variation.
+    const n=850,pos=new Float32Array(n*3),cols=new Float32Array(n*3);const colors=[new T.Color(0xff8bd7),new T.Color(0x80aaff),new T.Color(0xffdf82)];for(let i=0;i<n;i++){pos[i*3]=(Math.random()-.5)*19;pos[i*3+1]=(Math.random()-.5)*10;pos[i*3+2]=(Math.random()-.5)*9-1;const co=colors[i%3];cols[i*3]=co.r;cols[i*3+1]=co.g;cols[i*3+2]=co.b}const pg=new T.BufferGeometry();pg.setAttribute('position',new T.BufferAttribute(pos,3));pg.setAttribute('color',new T.BufferAttribute(cols,3));const stars=new T.Points(pg,new T.PointsMaterial({size:.025,vertexColors:true,transparent:true,opacity:.85,sizeAttenuation:true}));scene.add(stars);
+    // A reflective animated water plane with rippling neon lines.
+    const water=new T.Mesh(new T.PlaneGeometry(30,7,1,1),new T.MeshBasicMaterial({color:0x252a77,transparent:true,opacity:.48}));water.rotation.x=-Math.PI/2;water.position.set(0,-3.0,-.8);scene.add(water);const waves=[];for(let i=0;i<16;i++){const wave=new T.Mesh(new T.TorusGeometry(1.4+i*.28,.009,4,120),new T.MeshBasicMaterial({color:i%2?0xff68ca:0xffd66c,transparent:true,opacity:.22-i*.008}));wave.rotation.x=Math.PI/2;wave.scale.set(1.55,.42,1);wave.position.set(0,-2.92+i*.006,-.65);scene.add(wave);waves.push(wave)}
+    let w=1,h=1,visible=true,raf=0,mx=0,my=0;const resize=()=>{const r=canvas.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);renderer.setSize(w,h,false);camera.aspect=w/h;camera.position.z=w<600?16:13;camera.updateProjectionMatrix()};resize();window.addEventListener('resize',resize,{passive:true});hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();mx=((e.clientX-r.left)/r.width-.5)*.72;my=((e.clientY-r.top)/r.height-.5)*.45},{passive:true});
+    const observer=new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible&&!raf)animate()},{threshold:.01});observer.observe(hero);const clock=new T.Clock();
+    function animate(){if(!visible||document.hidden){raf=0;return}raf=requestAnimationFrame(animate);const t=clock.getElapsedTime();planetGroup.rotation.y=t*.13;planetGroup.rotation.x=Math.sin(t*.2)*.05;planetGroup.position.y=2.1+Math.sin(t*.55)*.12;ring.rotation.z=Math.sin(t*.22)*.06;frameGroups.forEach((g,i)=>{g.rotation.y=g.userData.spin+Math.sin(t*.5+i)*.09;g.position.y=g.userData.baseY+Math.sin(t*.7+i)*.13});floaters.forEach((g,i)=>{g.position.y=g.userData.baseY+Math.sin(t*.45+g.userData.seed)*.09;g.rotation.y=Math.sin(t*.18+i)*.04});sculptures.forEach(m=>{m.rotation.x+=.002;m.rotation.y+=.003;m.position.y=m.userData.baseY+Math.sin(t*.65+m.userData.seed)*.12});camGroup.rotation.y=Math.sin(t*.4)*.16;camGroup.position.y=.55+Math.sin(t*.72)*.13;waves.forEach((m,i)=>{const k=1+Math.sin(t*.7+i*.38)*.025;m.scale.x=1.55*k;m.scale.y=.42*k;m.material.opacity=.12+.11*(.5+.5*Math.sin(t+i))});stars.rotation.y=t*.008;camera.position.x+=(mx-camera.position.x*.04)*.018;camera.position.y+=(-my-camera.position.y*.04)*.018;camera.lookAt(0,0,0);renderer.render(scene,camera)}animate();
+  }catch(err){console.warn('Hero 3D world fallback:',err)}}
+  // Secondary 3D scene on the services section.
+  const worldCanvas=document.getElementById('world-3d');if(worldCanvas&&window.THREE&&!reduced){try{const T=window.THREE,scene=new T.Scene(),camera=new T.PerspectiveCamera(42,1,.1,80);camera.position.z=9;const renderer=new T.WebGLRenderer({canvas:worldCanvas,alpha:true,antialias:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.3));renderer.setClearColor(0,0);scene.add(new T.AmbientLight(0xb8adff,1.7));const key=new T.PointLight(0xff6ac9,60,18);key.position.set(-3,2,4);scene.add(key);const g=new T.Group();scene.add(g);const sphere=new T.Mesh(new T.SphereGeometry(1.15,48,32),new T.MeshPhysicalMaterial({color:0x4969db,metalness:.25,roughness:.3,clearcoat:1,emissive:0x17125b,emissiveIntensity:.3}));g.add(sphere);const ring=new T.Mesh(new T.TorusGeometry(1.7,.035,12,150),new T.MeshStandardMaterial({color:0xffdb68,metalness:.7,roughness:.2,emissive:0xffa73f,emissiveIntensity:.4}));ring.rotation.x=1.2;g.add(ring);let visible=true,raf=0,w=1,h=1;const resize=()=>{const r=worldCanvas.parentElement.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};resize();window.addEventListener('resize',resize,{passive:true});const io=new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible&&!raf)draw()});io.observe(worldCanvas);const clock=new T.Clock();function draw(){if(!visible||document.hidden){raf=0;return}raf=requestAnimationFrame(draw);const t=clock.getElapsedTime();g.rotation.y=t*.18;g.position.y=Math.sin(t*.6)*.15;renderer.render(scene,camera)}draw()}catch(e){console.warn('Secondary 3D fallback',e)}}
+  document.querySelectorAll('.gallery-grid img').forEach(img=>img.addEventListener('click',()=>{const box=document.querySelector('.lightbox');if(box){const target=box.querySelector('img');if(target)target.src=img.src;box.classList.add('open')}}));const lightbox=document.querySelector('.lightbox');if(lightbox)lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target.tagName==='BUTTON')lightbox.classList.remove('open')});
+  const params=new URLSearchParams(location.search);if(params.get('service')){const select=document.querySelector('[name="type_shoot"]');if(select){const map={'portrait-mini':'Portret','portrait-standard':'Portret','portrait-premium':'Portret','automotive-basic':'Automotive','automotive-premium':'Automotive','extra-car':'Automotive','event-2h':'Event','event-4h':'Event','event-8h':'Event','custom':'Creatief / anders','wedding':'Bruiloft'};select.value=map[params.get('service')]||''}}if(params.get('type')==='duo'){const select=document.querySelector('[name="type_shoot"]');if(select)select.value='Lesloy Visuals × Smit Works — duo'}if(params.get('sent')==='1'){const note=document.createElement('p');note.className='form-success';note.textContent='Bedankt! Je bericht is verzonden. Ik kom er zo snel mogelijk op terug.';const form=document.querySelector('form');if(form)form.before(note)}
+  if(fine&&!reduced)document.querySelectorAll('.universe-photo,.work-card,.info-card,.price-card').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateX(${y*-3}deg) rotateY(${x*3}deg) translateY(-4px)`});card.addEventListener('pointerleave',()=>card.style.transform='')});
 });
